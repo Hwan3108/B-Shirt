@@ -135,15 +135,39 @@ public class NhanVien {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "NhanVien{" + "id=" + id + ", matKhau=" + matKhau + ", ten=" + ten + ", chucVu=" + chucVu + ", SDT=" + SDT + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+    public String layChucVu() {
+        if(chucVu == true) {
+            return "Nhân viên";
+        } else if (chucVu == false) {
+            return "Quản lý";
+        } else {
+            return null;
+        }
+    }
+    
+    public String layGioiTinh() {
+        if(gioiTinh == true) {
+            return "Nam";
+        } else if (chucVu == false) {
+            return "Nữ";
+        } else {
+            return null;
+        }
     }
 
+    public String layTrangThai() {
+        if(trangThai == true) {
+            return "Đi làm";
+        } else if (trangThai == false) {
+            return "Nghỉ việc";
+        } else {
+            return null;
+        }
+    }
     
     public Object[] toDataRow() {
         SimpleDateFormat SDF = new SimpleDateFormat("dd-mm-yyyy");
-        return new Object[] {this.id, this.ten, this.matKhau, this.chucVu, this.SDT, SDF.format(this.ngaySinh), this.gioiTinh, this.diaChi,this.trangThai};
+        return new Object[] {this.id, this.ten, this.matKhau, layChucVu(), this.SDT, SDF.format(this.ngaySinh), layGioiTinh(), this.diaChi, layTrangThai()};
     }
     
 }
