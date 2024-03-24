@@ -7,54 +7,54 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.KichThuoc;
+import model.SanPham;
 
-public class KichThuocRepository {
+public class SanPhamRepository {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     String sql = null;
 
-    public List<KichThuoc> getAll() {
-        sql = "SELECT * FROM kich_thuoc";
-        List<KichThuoc> listKT = new ArrayList<>();
+    public List<SanPham> getAll() {
+        sql = "SELECT * FROM san_pham";
+        List<SanPham> listSP = new ArrayList<>();
         
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()) {
-                KichThuoc kt = new KichThuoc(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDate(5), rs.getDate(6));
-                listKT.add(kt);
+                SanPham sp = new SanPham(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDate(5), rs.getDate(6));
+                listSP.add(sp);
             }
-            return listKT;
+            return listSP;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
     
-    public void add(KichThuoc kt) {
-        sql = "INSERT INTO kich_thuoc(ma_kich_thuoc,ten_kich_thuoc,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+    public void add(SanPham sp) {
+        sql = "INSERT INTO san_pham(ma_san_pham,ten_san_pham,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, kt.getTen());
-            ps.setBoolean(2, kt.isTrangThai());
+            ps.setString(1, sp.getTen());
+            ps.setBoolean(2, sp.isTrangThai());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
       
-    public void update(KichThuoc kt) {
-        sql = "UPDATE kich_thuoc SET ten_kich_thuoc = ?, ngay_sua = GETDATE(), trang_thai = ? WHERE id = ?;";
+    public void update(SanPham sp) {
+        sql = "UPDATE san_pham SET ten_san_pham = ?, ngay_sua = GETDATE(), trang_thai = ? WHERE id = ?;";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, kt.getTen());
-            ps.setObject(2, kt.isTrangThai());
-            ps.setObject(3, kt.getId());
+            ps.setObject(1, sp.getTen());
+            ps.setObject(2, sp.isTrangThai());
+            ps.setObject(3, sp.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

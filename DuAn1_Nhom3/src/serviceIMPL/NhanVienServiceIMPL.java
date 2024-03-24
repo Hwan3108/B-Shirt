@@ -24,16 +24,20 @@ public class NhanVienServiceIMPL implements NhanVienService{
 
     @Override
     public String add(NhanVien nv) {
-        if(nv.getId().isEmpty()) {
-            return "Không được để trống id";
-        } else if (nv.getTen().isEmpty()) {
+        if (nv.getHoTen().isEmpty()) {
             return "Không được để trống tên";
         } else if (nv.getMatKhau().isEmpty()) {
             return "Không được để trống mật khẩu";
         } else if (nv.getDiaChi().isEmpty()) {
             return "Không được để trống địa chỉ";
-        } else if (nv.getSDT().isEmpty()) {
+        } else if (nv.getSdt().isEmpty()) {
             return "Không được để trống SĐT";
+        } else if (nv.getNgaySinh() == null) {
+            return "Không được để trống ngày sinh";
+        } else if (nv.getEmail().isEmpty()) {
+            return "Không được để trống Email";
+        } else if (nv.getCccd().isEmpty()) {
+            return "Không được để trống Căn cước công dân";
         } else if(repo.add(nv)) {
             return "Thêm thành công";
         } else {
@@ -42,17 +46,21 @@ public class NhanVienServiceIMPL implements NhanVienService{
     }
 
     @Override
-    public String update(NhanVien nv, String id) {
-        if(nv.getId().isEmpty()) {
-            return "Không được để trống id";
-        } else if (nv.getTen().isEmpty()) {
+    public String update(NhanVien nv, int id) {
+        if (nv.getHoTen().isEmpty()) {
             return "Không được để trống tên";
         } else if (nv.getMatKhau().isEmpty()) {
             return "Không được để trống mật khẩu";
         } else if (nv.getDiaChi().isEmpty()) {
             return "Không được để trống địa chỉ";
-        } else if (nv.getSDT().isEmpty()) {
+        } else if (nv.getSdt().isEmpty()) {
             return "Không được để trống SĐT";
+        } else if (nv.getNgaySinh() == null) {
+            return "Không được để trống ngày sinh";
+        } else if (nv.getEmail().isEmpty()) {
+            return "Không được để trống Email";
+        } else if (nv.getCccd().isEmpty()) {
+            return "Không được để trống Căn cước công dân";
         } else if(repo.update(nv, id)) {
             return "Sửa thành công";
         } else {

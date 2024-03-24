@@ -1,28 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.*;
 import model.NhanVien;
 import ultilities.DBConnect;
-/**
- *
- * @author Hwan
- */
+
 public class NhanVienRepository {
-    
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     String sql = null;
     
-    
     public List<NhanVien> getAll() {
-        sql =   "SELECT id, matKhau, ten, chucVu, SDT, ngaySinh, gioiTinh, diaChi, ngayTao, ngaySua, trangThai FROM NHANVIEN";
+        sql = "SELECT id,ma_nhan_vien,ten_nhan_vien,mat_khau,chuc_vu,sdt,ngay_sinh,\n" +
+        "gioi_tinh,dia_chi,email,cccd,trang_thai,ngay_tao,ngay_sua FROM nhan_vien";
         List<NhanVien> listNV = new ArrayList<>();
         
         try {
@@ -30,59 +24,68 @@ public class NhanVienRepository {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()) {
-                NhanVien nv = new NhanVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getString(5), rs.getDate(6), rs.getBoolean(7), rs.getString(8), rs.getDate(9), rs.getDate(10), rs.getBoolean(11));
+                NhanVien nv = new NhanVien(rs.getInt(1),rs.getString(2),rs.getString(3),
+                        rs.getString(4),rs.getBoolean(5),rs.getString(6),rs.getDate(7),
+                        rs.getBoolean(8),rs.getString(9),rs.getString(10),rs.getString(11),
+                        rs.getInt(12),rs.getDate(13),rs.getDate(14));
                 listNV.add(nv);
+                return listNV;
             }
-            return listNV;
-        } catch (SQLException e) {
-            e.printStackTrace(System.out);
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
     
     public boolean add(NhanVien nv) {
-        sql = "INSERT INTO NHANVIEN (id, matKhau, ten, chucVu, SDT, ngaySinh, gioiTinh, diaChi) VALUES (?,?,?,?,?,?,?,?)";
+        sql =   "INSERT INTO nhan_vien(ma_nhan_vien,ten_nhan_vien,mat_khau,chuc_vu,sdt,ngay_sinh,"
+                + "gioi_tinh,dia_chi,email,cccd,trang_thai,ngay_tao,ngay_sua)\n" +
+                "VALUES (NEWID(),?,?,?,?,?,?,?,?,?,?,GETDATE(),NULL)";
         int check = 0;
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, nv.getId());
+            ps.setObject(1, nv.getHoTen());
             ps.setObject(2, nv.getMatKhau());
-            ps.setObject(3, nv.getTen());
-            ps.setObject(4, nv.isChucVu());
-            ps.setObject(5, nv.getSDT());
-            ps.setObject(6, nv.getNgaySinh());
-            ps.setObject(7, nv.isGioiTinh());
-            ps.setObject(8, nv.getDiaChi());
-
-            check = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-        }
-        return check > 0;
-    }
-
-    public boolean update(NhanVien nv, String id) {
-        sql = "UPDATE NHANVIEN SET matKhau = ?, ten = ?, chucVu = ?, SDT = ?, ngaySinh = ?, gioiTinh = ?, diaChi = ?, trangThai=? WHERE id=?";
-        int check = 0;
-        try {
-            con = DBConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, nv.getMatKhau());
-            ps.setObject(2, nv.getTen());
             ps.setObject(3, nv.isChucVu());
-            ps.setObject(4, nv.getSDT());
+            ps.setObject(4, nv.getSdt());
             ps.setObject(5, nv.getNgaySinh());
             ps.setObject(6, nv.isGioiTinh());
             ps.setObject(7, nv.getDiaChi());
-            ps.setObject(8, nv.isTrangThai());
-            ps.setObject(9, id);
-
+            ps.setObject(8, nv.getEmail());
+            ps.setObject(9, nv.getCccd());
+            ps.setObject(10, nv.getTrangThai());
+            
             check = ps.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            e.printStackTrace();
         }
         return check > 0;
     }
-    
+    public boolean update(NhanVien nv, int id) {
+        sql =   "UPDATE nhan_vien SET ten_nhan_vien = ?, mat_khau = ?, chuc_vu = ?, sdt = ? , ngay_sinh = ?,"
+                + "gioi_tinh = ?, dia_chi = ?, email = ?, cccd = ?, trang_thai = ?, ngay_sua = GETDATE() WHERE id = ?";
+        int check = 0;
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, nv.getHoTen());
+            ps.setObject(2, nv.getMatKhau());
+            ps.setObject(3, nv.isChucVu());
+            ps.setObject(4, nv.getSdt());
+            ps.setObject(5, nv.getNgaySinh());
+            ps.setObject(6, nv.isGioiTinh());
+            ps.setObject(7, nv.getDiaChi());
+            ps.setObject(8, nv.getEmail());
+            ps.setObject(9, nv.getCccd());
+            ps.setObject(10, nv.getTrangThai());
+            ps.setObject(11, id);
+            
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
 }

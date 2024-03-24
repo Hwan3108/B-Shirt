@@ -7,54 +7,54 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.KichThuoc;
+import model.HoaTiet;
 
-public class KichThuocRepository {
+public class HoaTietRepository {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     String sql = null;
 
-    public List<KichThuoc> getAll() {
-        sql = "SELECT * FROM kich_thuoc";
-        List<KichThuoc> listKT = new ArrayList<>();
+    public List<HoaTiet> getAll() {
+        sql = "SELECT * FROM hoa_tiet";
+        List<HoaTiet> listHT = new ArrayList<>();
         
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()) {
-                KichThuoc kt = new KichThuoc(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDate(5), rs.getDate(6));
-                listKT.add(kt);
+                HoaTiet ht = new HoaTiet(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getDate(5), rs.getDate(6));
+                listHT.add(ht);
             }
-            return listKT;
+            return listHT;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
     
-    public void add(KichThuoc kt) {
-        sql = "INSERT INTO kich_thuoc(ma_kich_thuoc,ten_kich_thuoc,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+    public void add(HoaTiet ht) {
+        sql = "INSERT INTO hoa_tiet(ma_hoa_tiet,ten_hoa_tiet,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, kt.getTen());
-            ps.setBoolean(2, kt.isTrangThai());
+            ps.setString(1, ht.getTen());
+            ps.setBoolean(2, ht.isTrangThai());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
       
-    public void update(KichThuoc kt) {
-        sql = "UPDATE kich_thuoc SET ten_kich_thuoc = ?, ngay_sua = GETDATE(), trang_thai = ? WHERE id = ?;";
+    public void update(HoaTiet ht) {
+        sql = "UPDATE hoa_tiet SET ten_hoa_tiet = ?, ngay_sua = GETDATE(), trang_thai = ? WHERE id = ?;";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, kt.getTen());
-            ps.setObject(2, kt.isTrangThai());
-            ps.setObject(3, kt.getId());
+            ps.setObject(1, ht.getTen());
+            ps.setObject(2, ht.isTrangThai());
+            ps.setObject(3, ht.getId());
             ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

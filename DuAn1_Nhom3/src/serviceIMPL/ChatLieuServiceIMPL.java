@@ -14,12 +14,12 @@ public class ChatLieuServiceIMPL implements ChatLieuService{
     }
     
     @Override
-    public void Add(ChatLieu cl) {
+    public void add(ChatLieu cl) {
         clRepo.add(cl);
     }
 
     @Override
-    public void Update(ChatLieu cl) {
+    public void update(ChatLieu cl) {
        clRepo.update(cl);
     }
 

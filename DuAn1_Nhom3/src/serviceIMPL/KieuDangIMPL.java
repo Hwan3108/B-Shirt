@@ -14,12 +14,12 @@ public class KieuDangIMPL implements KieuDangService{
     }
     
     @Override
-    public void Add(KieuDang kd) {
+    public void add(KieuDang kd) {
         kdRepo.add(kd);
     }
     
     @Override
-    public void Update(KieuDang kd) {
+    public void update(KieuDang kd) {
        kdRepo.update(kd);
     }
     

@@ -5,6 +5,6 @@ import model.MauSac;
 
 public interface MauSacService {
     List<MauSac> getALL();
-    void Add(MauSac ms);
-    void Update(MauSac ms);
+    void add(MauSac ms);
+    void update(MauSac ms);
 }

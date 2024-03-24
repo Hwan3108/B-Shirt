@@ -5,6 +5,6 @@ import model.KieuDang;
 
 public interface KieuDangService {
     List<KieuDang> getALL();
-    void Add(KieuDang kd);
-    void Update(KieuDang kd);
+    void add(KieuDang kd);
+    void update(KieuDang kd);
 }

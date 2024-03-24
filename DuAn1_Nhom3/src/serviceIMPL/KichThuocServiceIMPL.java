@@ -14,12 +14,12 @@ public class KichThuocServiceIMPL implements KichThuocService{
     }
     
     @Override
-    public void Add(KichThuoc kt) {
+    public void add(KichThuoc kt) {
         ktRepo.add(kt);
     }
     
     @Override
-    public void Update(KichThuoc kt) {
+    public void update(KichThuoc kt) {
        ktRepo.update(kt);
     }
     

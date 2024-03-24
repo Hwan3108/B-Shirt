@@ -4,55 +4,63 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class NhanVien {
-    private String id;
+    private int id;
+    private String ma;
+    private String hoTen;
     private String matKhau;
-    private String ten;
     private boolean chucVu;
-    private String SDT;
+    private String sdt;
     private Date ngaySinh;
     private boolean gioiTinh;
     private String diaChi;
+    private String email;
+    private String cccd;
+    private int trangThai;
     private Date ngayTao;
     private Date ngaySua;
-    private boolean trangThai;
 
     public NhanVien() {
     }
 
-    public NhanVien(String id, String matKhau, String ten, boolean chucVu, String SDT, Date ngaySinh, boolean gioiTinh, String diaChi, boolean trangThai) {
+    public NhanVien(int id, String ma, String hoTen, String matKhau, boolean chucVu, String sdt, Date ngaySinh, boolean gioiTinh, String diaChi, String email, String cccd, int trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
+        this.ma = ma;
+        this.hoTen = hoTen;
         this.matKhau = matKhau;
-        this.ten = ten;
         this.chucVu = chucVu;
-        this.SDT = SDT;
+        this.sdt = sdt;
         this.ngaySinh = ngaySinh;
         this.gioiTinh = gioiTinh;
         this.diaChi = diaChi;
+        this.email = email;
+        this.cccd = cccd;
         this.trangThai = trangThai;
-    }
-    
-    
-
-    public NhanVien(String id, String matKhau, String ten, boolean chucVu, String SDT, Date ngaySinh, boolean gioiTinh, String diaChi, Date ngayTao, Date ngaySua, boolean trangThai) {
-        this.id = id;
-        this.matKhau = matKhau;
-        this.ten = ten;
-        this.chucVu = chucVu;
-        this.SDT = SDT;
-        this.ngaySinh = ngaySinh;
-        this.gioiTinh = gioiTinh;
-        this.diaChi = diaChi;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
-        this.trangThai = trangThai;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+
+    public void setMa(String ma) {
+        this.ma = ma;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public String getMatKhau() {
@@ -63,14 +71,6 @@ public class NhanVien {
         this.matKhau = matKhau;
     }
 
-    public String getTen() {
-        return ten;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
     public boolean isChucVu() {
         return chucVu;
     }
@@ -79,12 +79,12 @@ public class NhanVien {
         this.chucVu = chucVu;
     }
 
-    public String getSDT() {
-        return SDT;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
     }
 
     public Date getNgaySinh() {
@@ -111,6 +111,30 @@ public class NhanVien {
         this.diaChi = diaChi;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public Date getNgayTao() {
         return ngayTao;
     }
@@ -126,15 +150,7 @@ public class NhanVien {
     public void setNgaySua(Date ngaySua) {
         this.ngaySua = ngaySua;
     }
-
-    public boolean isTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
-    }
-
+    
     public String layChucVu() {
         if(chucVu == true) {
             return "Nhân viên";
@@ -148,7 +164,7 @@ public class NhanVien {
     public String layGioiTinh() {
         if(gioiTinh == true) {
             return "Nam";
-        } else if (chucVu == false) {
+        } else if (gioiTinh == false) {
             return "Nữ";
         } else {
             return null;
@@ -156,18 +172,20 @@ public class NhanVien {
     }
 
     public String layTrangThai() {
-        if(trangThai == true) {
+        if(trangThai == 1) {
             return "Đi làm";
-        } else if (trangThai == false) {
-            return "Nghỉ việc";
-        } else {
+        } else if (trangThai == 2) {
+            return "Nghỉ phép";
+        } else if (trangThai == 3) {
+            return "Đã thôi việc";
+        }else {
             return null;
         }
     }
     
     public Object[] toDataRow() {
         SimpleDateFormat SDF = new SimpleDateFormat("dd-mm-yyyy");
-        return new Object[] {this.id, this.ten, this.matKhau, layChucVu(), this.SDT, SDF.format(this.ngaySinh), layGioiTinh(), this.diaChi, layTrangThai()};
+        return new Object[] {this.id, this.ma, this.hoTen, layChucVu(), this.sdt, SDF.format(this.ngaySinh), layGioiTinh(), this.diaChi, this.matKhau, this.cccd, this.email, layTrangThai()};
     }
     
 }

@@ -2,25 +2,27 @@ package model;
 
 import java.util.Date;
 
-public class KichThuoc {
+public class HinhAnh {
     private int id;
     private String ma;
-    private String ten;
+    private String duongDan;
     private boolean trangThai;
     private Date ngayTao;
     private Date ngaySua;
 
-    public KichThuoc() {
+    public HinhAnh() {
     }
 
-    public KichThuoc(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
+    public HinhAnh(int id, String ma, String duongDan, boolean trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.ma = ma;
-        this.ten = ten;
+        this.duongDan = duongDan;
         this.trangThai = trangThai;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
     }
+
+    
 
     public int getId() {
         return id;
@@ -38,12 +40,12 @@ public class KichThuoc {
         this.ma = ma;
     }
 
-    public String getTen() {
-        return ten;
+    public String getDuongDan() {
+        return duongDan;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setDuongDan(String duongDan) {
+        this.duongDan = duongDan;
     }
 
     public boolean isTrangThai() {
@@ -68,11 +70,6 @@ public class KichThuoc {
 
     public void setNgaySua(Date ngaySua) {
         this.ngaySua = ngaySua;
-    }
-
-    @Override
-    public String toString() {
-        return ten;
     }
     
 }

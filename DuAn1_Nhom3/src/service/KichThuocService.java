@@ -5,6 +5,6 @@ import model.KichThuoc;
 
 public interface KichThuocService {
     List<KichThuoc> getALL();
-    void Add(KichThuoc kt);
-    void Update(KichThuoc kt);
+    void add(KichThuoc kt);
+    void update(KichThuoc kt);
 }

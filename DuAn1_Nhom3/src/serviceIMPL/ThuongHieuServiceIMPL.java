@@ -14,12 +14,12 @@ public class ThuongHieuServiceIMPL implements ThuongHieuService{
     }
     
     @Override
-    public void Add(ThuongHieu th) {
+    public void add(ThuongHieu th) {
         thRepo.add(th);
     }
     
     @Override
-    public void Update(ThuongHieu th) {
+    public void update(ThuongHieu th) {
        thRepo.update(th);
     }
     

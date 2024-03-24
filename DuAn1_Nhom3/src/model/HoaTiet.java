@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class KichThuoc {
+public class HoaTiet {
     private int id;
     private String ma;
     private String ten;
@@ -10,10 +10,10 @@ public class KichThuoc {
     private Date ngayTao;
     private Date ngaySua;
 
-    public KichThuoc() {
+    public HoaTiet() {
     }
 
-    public KichThuoc(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
+    public HoaTiet(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;

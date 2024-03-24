@@ -5,6 +5,6 @@ import model.ChatLieu;
 
 public interface ChatLieuService {
     List<ChatLieu> getAll();
-    void Add(ChatLieu cl);
-    void Update(ChatLieu cl);
+    void add(ChatLieu cl);
+    void update(ChatLieu cl);
 }

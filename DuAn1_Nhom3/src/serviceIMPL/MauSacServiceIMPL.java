@@ -14,12 +14,12 @@ public class MauSacServiceIMPL implements MauSacService{
     }
     
     @Override
-    public void Add(MauSac ms) {
+    public void add(MauSac ms) {
         msRepo.add(ms);
     }
     
     @Override
-    public void Update(MauSac ms) {
+    public void update(MauSac ms) {
        msRepo.update(ms);
     }
     

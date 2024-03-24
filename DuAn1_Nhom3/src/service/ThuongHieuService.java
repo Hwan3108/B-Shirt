@@ -5,6 +5,6 @@ import model.ThuongHieu;
 
 public interface ThuongHieuService {
     List<ThuongHieu> getALL();
-    void Add(ThuongHieu th);
-    void Update(ThuongHieu th);
+    void add(ThuongHieu th);
+    void update(ThuongHieu th);
 }
