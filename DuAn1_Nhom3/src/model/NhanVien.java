@@ -22,6 +22,21 @@ public class NhanVien {
     public NhanVien() {
     }
 
+    public NhanVien(String hoTen, String matKhau, boolean chucVu, String sdt, Date ngaySinh, boolean gioiTinh, String diaChi, String email, String cccd, int trangThai) {
+        this.hoTen = hoTen;
+        this.matKhau = matKhau;
+        this.chucVu = chucVu;
+        this.sdt = sdt;
+        this.ngaySinh = ngaySinh;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.email = email;
+        this.cccd = cccd;
+        this.trangThai = trangThai;
+    }
+
+    
+    
     public NhanVien(int id, String ma, String hoTen, String matKhau, boolean chucVu, String sdt, Date ngaySinh, boolean gioiTinh, String diaChi, String email, String cccd, int trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.ma = ma;
@@ -184,8 +199,8 @@ public class NhanVien {
     }
     
     public Object[] toDataRow() {
-        SimpleDateFormat SDF = new SimpleDateFormat("dd-mm-yyyy");
-        return new Object[] {this.id, this.ma, this.hoTen, layChucVu(), this.sdt, SDF.format(this.ngaySinh), layGioiTinh(), this.diaChi, this.matKhau, this.cccd, this.email, layTrangThai()};
+        SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
+        return new Object[] {this.id, this.hoTen, layChucVu(), this.sdt, SDF.format(this.ngaySinh), layGioiTinh(), this.diaChi, this.email, layTrangThai()};
     }
     
 }

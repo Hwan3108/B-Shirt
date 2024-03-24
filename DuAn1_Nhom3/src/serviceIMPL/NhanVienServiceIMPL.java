@@ -49,8 +49,6 @@ public class NhanVienServiceIMPL implements NhanVienService{
     public String update(NhanVien nv, int id) {
         if (nv.getHoTen().isEmpty()) {
             return "Không được để trống tên";
-        } else if (nv.getMatKhau().isEmpty()) {
-            return "Không được để trống mật khẩu";
         } else if (nv.getDiaChi().isEmpty()) {
             return "Không được để trống địa chỉ";
         } else if (nv.getSdt().isEmpty()) {
