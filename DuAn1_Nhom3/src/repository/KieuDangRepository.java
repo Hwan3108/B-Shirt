@@ -35,7 +35,7 @@ public class KieuDangRepository {
     }
     
     public void add(KieuDang kd) {
-        sql = "INSERT INTO kieu_dang(ma_kieu_dang,ten_kieu_dang,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO kieu_dang(ma_kieu_dang,ten_kieu_dang,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

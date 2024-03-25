@@ -35,7 +35,7 @@ public class HinhAnhRepository {
     }
     
     public void add(HinhAnh ha) {
-        sql = "INSERT INTO hinh_anh(ma_hinh_anh,duong_dan,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO hinh_anh(ma_hinh_anh,duong_dan,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

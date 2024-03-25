@@ -35,7 +35,7 @@ public class ChatLieuRepository {
     }
     
     public void add(ChatLieu cl) {
-        sql = "INSERT INTO chat_lieu(ma_chat_lieu,ten_chat_lieu,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO chat_lieu(ma_chat_lieu,ten_chat_lieu,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

@@ -15,8 +15,7 @@ public class NhanVienRepository {
     String sql = null;
     
     public List<NhanVien> getAll() {
-        sql = "SELECT id,ma_nhan_vien,ten_nhan_vien,mat_khau,chuc_vu,sdt,ngay_sinh,\n" +
-        "gioi_tinh,dia_chi,email,cccd,trang_thai,ngay_tao,ngay_sua FROM nhan_vien";
+        sql = "SELECT * FROM nhan_vien";
         List<NhanVien> listNV = new ArrayList<>();
         
         try {
@@ -29,18 +28,18 @@ public class NhanVienRepository {
                         rs.getBoolean(8),rs.getString(9),rs.getString(10),rs.getString(11),
                         rs.getInt(12),rs.getDate(13),rs.getDate(14));
                 listNV.add(nv);
-                return listNV;
             }
+            return listNV;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
     
     public boolean add(NhanVien nv) {
         sql =   "INSERT INTO nhan_vien(ma_nhan_vien,ten_nhan_vien,mat_khau,chuc_vu,sdt,ngay_sinh,"
                 + "gioi_tinh,dia_chi,email,cccd,trang_thai,ngay_tao,ngay_sua)\n" +
-                "VALUES (NEWID(),?,?,?,?,?,?,?,?,?,?,GETDATE(),NULL)";
+                "VALUES (NEWID(),?,?,?,?,?,?,?,?,?,?,GETDATE(),GETDATE())";
         int check = 0;
         try {
             con = DBConnect.getConnection();

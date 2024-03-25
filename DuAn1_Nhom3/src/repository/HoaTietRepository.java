@@ -35,7 +35,7 @@ public class HoaTietRepository {
     }
     
     public void add(HoaTiet ht) {
-        sql = "INSERT INTO hoa_tiet(ma_hoa_tiet,ten_hoa_tiet,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO hoa_tiet(ma_hoa_tiet,ten_hoa_tiet,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

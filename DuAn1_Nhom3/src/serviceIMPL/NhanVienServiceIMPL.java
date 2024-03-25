@@ -5,6 +5,7 @@
 package serviceIMPL;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import model.NhanVien;
 import repository.NhanVienRepository;
@@ -24,6 +25,7 @@ public class NhanVienServiceIMPL implements NhanVienService{
 
     @Override
     public String add(NhanVien nv) {
+        Calendar calendar = Calendar.getInstance();
         if (nv.getHoTen().isEmpty()) {
             return "Không được để trống tên";
         } else if (nv.getMatKhau().isEmpty()) {
@@ -38,7 +40,13 @@ public class NhanVienServiceIMPL implements NhanVienService{
             return "Không được để trống Email";
         } else if (nv.getCccd().isEmpty()) {
             return "Không được để trống Căn cước công dân";
-        } else if(repo.add(nv)) {
+        } else if (nv.getSdt().length() != 10) {
+            return "Độ dài số điện thoại không hợp lệ";
+        } else if (nv.getMatKhau().length() < 3 || nv.getMatKhau().length() > 20) {
+            return "Độ dài mật khẩu quy định từ 3 - 20 ký tự";
+        } else if (!nv.getEmail().contains("@")) {
+            return "Email không hợp lệ";
+        }else if(repo.add(nv)) {
             return "Thêm thành công";
         } else {
             return "Thêm thất bại";

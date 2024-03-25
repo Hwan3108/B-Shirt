@@ -35,7 +35,7 @@ public class KichThuocRepository {
     }
     
     public void add(KichThuoc kt) {
-        sql = "INSERT INTO kich_thuoc(ma_kich_thuoc,ten_kich_thuoc,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO kich_thuoc(ma_kich_thuoc,ten_kich_thuoc,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

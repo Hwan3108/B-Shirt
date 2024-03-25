@@ -35,7 +35,7 @@ public class MauSacRepository {
     }
     
     public void add(MauSac ms) {
-        sql = "INSERT INTO mau_sac(ma_mau,ten_mau,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO mau_sac(ma_mau,ten_mau,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

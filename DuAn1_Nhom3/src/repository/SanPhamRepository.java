@@ -35,7 +35,7 @@ public class SanPhamRepository {
     }
     
     public void add(SanPham sp) {
-        sql = "INSERT INTO san_pham(ma_san_pham,ten_san_pham,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO san_pham(ma_san_pham,ten_san_pham,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);

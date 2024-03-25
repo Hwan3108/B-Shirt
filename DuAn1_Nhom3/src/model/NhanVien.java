@@ -199,8 +199,7 @@ public class NhanVien {
     }
     
     public Object[] toDataRow() {
-        SimpleDateFormat SDF = new SimpleDateFormat("dd-MM-yyyy");
-        return new Object[] {this.id, this.hoTen, layChucVu(), this.sdt, SDF.format(this.ngaySinh), layGioiTinh(), this.diaChi, this.email, layTrangThai()};
+        return new Object[] {this.id, this.hoTen, layChucVu(), this.sdt, new SimpleDateFormat("dd-MM-yyyy").format(this.ngaySinh), layGioiTinh(), this.diaChi, this.email, layTrangThai(), new SimpleDateFormat("dd-MM-yyyy").format(this.ngayTao),new SimpleDateFormat("dd-MM-yyyy").format(this.ngaySua)};
     }
     
 }

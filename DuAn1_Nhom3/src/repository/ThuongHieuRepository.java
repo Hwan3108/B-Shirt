@@ -35,7 +35,7 @@ public class ThuongHieuRepository {
     }
     
     public void add(ThuongHieu th) {
-        sql = "INSERT INTO thuong_hieu(ma_mau,ten_mau,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),NULL)";
+        sql = "INSERT INTO thuong_hieu(ma_mau,ten_mau,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
