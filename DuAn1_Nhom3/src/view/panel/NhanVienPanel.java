@@ -16,11 +16,11 @@ public class NhanVienPanel extends javax.swing.JPanel {
     DefaultTableModel model = new DefaultTableModel();
     NhanVien nv = new NhanVien();
     private int index = -1;
+    List<NhanVien> listNV = service.getAll();
 
     
     public NhanVienPanel() {
         initComponents();
-        List<NhanVien> listNV = service.getAll();
         this.fillTable(listNV);
     }
     
@@ -60,6 +60,11 @@ public class NhanVienPanel extends javax.swing.JPanel {
         if(nv.getTrangThai()== 3) {
             rdoThoiViec.setSelected(true);
         }
+    }
+    
+    public boolean validateForm() {
+        
+        return true;
     }
 
     @SuppressWarnings("unchecked")
@@ -478,9 +483,9 @@ public class NhanVienPanel extends javax.swing.JPanel {
         } else {
             trangThai = 3;
         }
-        nv = new NhanVien(hoTen, matKhau, chucVu, SDT, ngaySinhs, gioiTinh, diaChi, email, cccd, trangThai);
-        JOptionPane.showMessageDialog(this, service.add(nv));
-        fillTable(service.getAll());
+            nv = new NhanVien(hoTen, matKhau, chucVu, SDT, ngaySinhs, gioiTinh, diaChi, email, cccd, trangThai);
+            JOptionPane.showMessageDialog(this, service.add(nv));
+            fillTable(service.getAll());
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed

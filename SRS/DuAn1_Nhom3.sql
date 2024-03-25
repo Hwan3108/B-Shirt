@@ -199,7 +199,6 @@ VALUES
     (NEWID(), 'https://example.com/image9.jpg', 1, '2024-03-17', '2024-03-17'),
     (NEWID(), 'https://example.com/image10.jpg', 1, '2024-03-16', '2024-03-16');
 
-
 INSERT INTO hoa_tiet (ma_hoa_tiet, ten_hoa_tiet, trang_thai, ngay_tao, ngay_sua)
 VALUES 
     (NEWID(), 'Pattern 1', 1, '2024-03-25', '2024-03-25'),

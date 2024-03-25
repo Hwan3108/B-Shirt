@@ -3,97 +3,123 @@ package model;
 import java.util.Date;
 
 public class SanPhamChiTiet {
-    private String id;
-    private String idChatLieu;
-    private String idKichThuoc;
-    private String idKieuDang;
-    private String idMauSac;
-    private String idThuongHieu;
-    private boolean gioiTinh;
+    private int id;
+    private int idChatLieu;
+    private int idHinhAnh;
+    private int idHoaTiet;
+    private int idKichThuoc;
+    private int idKieuDang;
+    private int idMauSac;
+    private int idSanPham;
+    private int idThuongHieu;
+    private String ma;
     private int soLuong;
     private double gia;
     private String moTa;
+    private int trangThai;
     private Date ngayTao;
     private Date ngaySua;
-    private boolean trangThai;
 
     public SanPhamChiTiet() {
     }
 
-    public SanPhamChiTiet(String id) {
-        this.id = id;
-    }
-
-    public SanPhamChiTiet(String id, String idChatLieu, String idKichThuoc, String idKieuDang, String idMauSac, String idThuongHieu, boolean gioiTinh, int soLuong, double gia, String moTa, Date ngayTao, Date ngaySua, boolean trangThai) {
+    public SanPhamChiTiet(int id, int idChatLieu, int idHinhAnh, int idHoaTiet, int idKichThuoc, int idKieuDang, int idMauSac, int idSanPham, int idThuongHieu, String ma, int soLuong, double gia, String moTa, int trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.idChatLieu = idChatLieu;
+        this.idHinhAnh = idHinhAnh;
+        this.idHoaTiet = idHoaTiet;
         this.idKichThuoc = idKichThuoc;
         this.idKieuDang = idKieuDang;
         this.idMauSac = idMauSac;
+        this.idSanPham = idSanPham;
         this.idThuongHieu = idThuongHieu;
-        this.gioiTinh = gioiTinh;
+        this.ma = ma;
         this.soLuong = soLuong;
         this.gia = gia;
         this.moTa = moTa;
+        this.trangThai = trangThai;
         this.ngayTao = ngayTao;
         this.ngaySua = ngaySua;
-        this.trangThai = trangThai;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getIdChatLieu() {
+    public int getIdChatLieu() {
         return idChatLieu;
     }
 
-    public void setIdChatLieu(String idChatLieu) {
+    public void setIdChatLieu(int idChatLieu) {
         this.idChatLieu = idChatLieu;
     }
 
-    public String getIdKichThuoc() {
+    public int getIdHinhAnh() {
+        return idHinhAnh;
+    }
+
+    public void setIdHinhAnh(int idHinhAnh) {
+        this.idHinhAnh = idHinhAnh;
+    }
+
+    public int getIdHoaTiet() {
+        return idHoaTiet;
+    }
+
+    public void setIdHoaTiet(int idHoaTiet) {
+        this.idHoaTiet = idHoaTiet;
+    }
+
+    public int getIdKichThuoc() {
         return idKichThuoc;
     }
 
-    public void setIdKichThuoc(String idKichThuoc) {
+    public void setIdKichThuoc(int idKichThuoc) {
         this.idKichThuoc = idKichThuoc;
     }
 
-    public String getIdKieuDang() {
+    public int getIdKieuDang() {
         return idKieuDang;
     }
 
-    public void setIdKieuDang(String idKieuDang) {
+    public void setIdKieuDang(int idKieuDang) {
         this.idKieuDang = idKieuDang;
     }
 
-    public String getIdMauSac() {
+    public int getIdMauSac() {
         return idMauSac;
     }
 
-    public void setIdMauSac(String idMauSac) {
+    public void setIdMauSac(int idMauSac) {
         this.idMauSac = idMauSac;
     }
 
-    public String getIdThuongHieu() {
+    public int getIdSanPham() {
+        return idSanPham;
+    }
+
+    public void setIdSanPham(int idSanPham) {
+        this.idSanPham = idSanPham;
+    }
+
+    public int getIdThuongHieu() {
         return idThuongHieu;
     }
 
-    public void setIdThuongHieu(String idThuongHieu) {
+    public void setIdThuongHieu(int idThuongHieu) {
         this.idThuongHieu = idThuongHieu;
     }
 
-    public boolean isGioiTinh() {
-        return gioiTinh;
+    public String getMa() {
+        return ma;
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
-        this.gioiTinh = gioiTinh;
+    public void setMa(String ma) {
+        this.ma = ma;
     }
 
     public int getSoLuong() {
@@ -120,6 +146,14 @@ public class SanPhamChiTiet {
         this.moTa = moTa;
     }
 
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public Date getNgayTao() {
         return ngayTao;
     }
@@ -134,18 +168,6 @@ public class SanPhamChiTiet {
 
     public void setNgaySua(Date ngaySua) {
         this.ngaySua = ngaySua;
-    }
-
-    public boolean isTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(boolean trangThai) {
-        this.trangThai = trangThai;
-    }
-    
-    public Object[] toDataRow() {
-        return new Object[] {this.id,this.gioiTinh,this.soLuong,this.gia,this.moTa};
     }
     
 }
