@@ -95,5 +95,44 @@ public class NhanVienServiceIMPL implements NhanVienService{
             return "Sửa thất bại";
         }
     }
+
+    @Override
+    public List<NhanVien> searchNV(List<NhanVien> listNV, String hoTen, String sdt, String cccd, String email) {
+        List<NhanVien> listSearch = new ArrayList<>();
+        for (NhanVien nv: listNV) {
+            if(nv.getHoTen().equals(hoTen)) {
+                listSearch.add(nv);
+            }else if(nv.getSdt().equals(sdt)) {
+                listSearch.add(nv);
+            }else if(nv.getCccd().equals(cccd)) {
+                listSearch.add(nv);
+            }else if(nv.getEmail().equals(email)) {
+                listSearch.add(nv);
+            }
+        }
+        return listSearch;
+    }
+
+    @Override
+    public List<NhanVien> searchChucVu(List<NhanVien> listNV, String chucVu) {
+        List<NhanVien> listSearch = new ArrayList<>();
+        for (NhanVien nv: listNV) {
+            if(nv.layChucVu().equals(chucVu)) {
+                listSearch.add(nv);
+            }
+        }
+        return listSearch;
+    }
+
+    @Override
+    public List<NhanVien> searchTrangThai(List<NhanVien> listNV, String trangThai) {
+        List<NhanVien> listSearch = new ArrayList<>();
+        for (NhanVien nv: listNV) {
+            if(nv.layTrangThai().equals(trangThai)) {
+                listSearch.add(nv);
+            }
+        }
+        return listSearch;
+    }
     
 }

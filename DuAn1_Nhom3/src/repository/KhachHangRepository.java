@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import ultilities.DBConnect;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.text.SimpleDateFormat;
  */
 public class KhachHangRepository {
 
-    DBconnection dBconnection;
+    DBConnect dBconnection;
     SimpleDateFormat format = new SimpleDateFormat("MM-dd-YYYY");
 
     public ArrayList<KhachHang> getAll() {
@@ -26,7 +27,7 @@ public class KhachHangRepository {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String maKH = rs.getString("id_khach_hang");
+                String maKH = rs.getString("ma_khach_hang");
                 String ten = rs.getString("ten_khach_hang");
                 String SDT = rs.getString("sdt");
                 String diaChi = rs.getString("dia_chi");
@@ -91,7 +92,7 @@ public class KhachHangRepository {
 
     public ArrayList<KhachHang> search(int idKH) {
         ArrayList<KhachHang> list = new ArrayList<>();
-        String sql = "select * from KhachHang where id like '%"+idKH+"%'";
+        String sql = "select * from khach_hang where id like '%"+idKH+"%'";
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -117,7 +118,7 @@ public class KhachHangRepository {
     }
      public ArrayList<KhachHang> searchGT(ArrayList<KhachHang> kist, String sex) {
         ArrayList<KhachHang> list = new ArrayList<>();
-        String sql = "select * from KhachHang where gioiTinh like '%"+sex+"%'";
+        String sql = "select * from khach_hang where gioi_tinh like '%"+sex+"%'";
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {

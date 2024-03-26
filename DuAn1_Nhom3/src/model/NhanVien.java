@@ -192,7 +192,7 @@ public class NhanVien {
         } else if (trangThai == 2) {
             return "Nghỉ phép";
         } else if (trangThai == 3) {
-            return "Đã thôi việc";
+            return "Thôi việc";
         }else {
             return null;
         }

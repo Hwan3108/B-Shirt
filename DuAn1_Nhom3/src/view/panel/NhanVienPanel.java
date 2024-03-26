@@ -111,9 +111,9 @@ public class NhanVienPanel extends javax.swing.JPanel {
         txtTimKiem = new javax.swing.JTextField();
         lblTimKiem = new javax.swing.JLabel();
         cbbChucVu = new javax.swing.JComboBox<>();
+        cbbTrangThai = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cbbTrangThai = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblNhanVien = new javax.swing.JTable();
         lblNV = new javax.swing.JLabel();
@@ -341,16 +341,32 @@ public class NhanVienPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("NHÂN VIÊN");
 
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyReleased(evt);
+            }
+        });
+
         lblTimKiem.setText("Tìm kiếm");
 
-        cbbChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Quản lý" }));
+        cbbChucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Nhân viên", "Quản lý" }));
         cbbChucVu.setToolTipText("");
+        cbbChucVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbChucVuActionPerformed(evt);
+            }
+        });
+
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Đi làm", "Nghỉ phép", "Thôi việc" }));
+        cbbTrangThai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbTrangThaiActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Chức vụ");
 
         jLabel4.setText("Trạng thái");
-
-        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đi làm", "Nghỉ phép", "Thôi việc" }));
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -389,7 +405,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -549,6 +565,35 @@ public class NhanVienPanel extends javax.swing.JPanel {
         index = tblNhanVien.getSelectedRow();
         fillData(index);
     }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
+        List<NhanVien> listSearch = service.searchNV(listNV, txtTimKiem.getText(), txtTimKiem.getText(), txtTimKiem.getText(), txtTimKiem.getText());
+        if(txtTimKiem.getText().isEmpty()) {
+            fillTable(service.getAll());
+        } else {
+            fillTable(listSearch);
+        }
+    }//GEN-LAST:event_txtTimKiemKeyReleased
+
+    private void cbbChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbChucVuActionPerformed
+        String chucVu = String.valueOf(cbbChucVu.getSelectedItem());
+        List<NhanVien> listSearch = service.searchChucVu(listNV, chucVu);
+        if(chucVu.equals("Tất cả")) {
+            fillTable(service.getAll());
+        } else {
+            fillTable(listSearch);            
+        }
+    }//GEN-LAST:event_cbbChucVuActionPerformed
+
+    private void cbbTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTrangThaiActionPerformed
+        String trangThai = String.valueOf(cbbTrangThai.getSelectedItem());
+        List<NhanVien> listSearch = service.searchTrangThai(listNV, trangThai);
+        if(trangThai.equals("Tất cả")) {
+            fillTable(service.getAll());
+        } else {
+            fillTable(listSearch);            
+        }
+    }//GEN-LAST:event_cbbTrangThaiActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

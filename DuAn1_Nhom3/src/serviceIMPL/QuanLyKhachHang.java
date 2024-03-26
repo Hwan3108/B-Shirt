@@ -25,18 +25,18 @@ public class QuanLyKhachHang implements KhachHangService{
     @Override
     public String add(KhachHang kh) {
         if (hangRepository.add(kh) == true) {
-            return "Them thanh cong";
+            return "Thêm thành công";
         } else {
-            return "Them that bai";
+            return "Thêm thất bại";
         }
     }
 
     @Override
     public String update(KhachHang kh) {
         if (hangRepository.update(kh) == true) {
-            return "Sua thanh cong";
+            return "Sửa thành công";
         } else {
-            return "Sua that bai";
+            return "Sửa thất bại";
         }
     }
 
