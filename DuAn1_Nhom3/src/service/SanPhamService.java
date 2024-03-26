@@ -5,6 +5,6 @@ import model.SanPham;
 
 public interface SanPhamService {
     List<SanPham> getAll();
-    void add(SanPham sp);
-    void update(SanPham sp);
+    boolean add(SanPham sp);
+    boolean update(SanPham sp);
 }

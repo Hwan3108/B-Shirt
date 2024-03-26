@@ -1,0 +1,14 @@
+package service;
+
+import java.util.List;
+import model.KhuyenMai;
+
+public interface KhuyenMaiService {
+    List<KhuyenMai> getAll();
+    void add(KhuyenMai khuyenMai);
+    KhuyenMai getById(int id);
+    void update(KhuyenMai khuyenMai, int id);
+    public void updateTrangThai();
+    public List<KhuyenMai> getByMa(String ma);
+    public List<KhuyenMai> getByTrangThai(int choice);
+}

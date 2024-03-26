@@ -34,31 +34,36 @@ public class SanPhamRepository {
         return null;
     }
     
-    public void add(SanPham sp) {
+    public boolean add(SanPham sp) {
         sql = "INSERT INTO san_pham(ma_san_pham,ten_san_pham,trang_thai,ngay_tao,ngay_sua) VALUES (NEWID(),?,?,GETDATE(),GETDATE())";
+        int check = 0;
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, sp.getTen());
             ps.setBoolean(2, sp.isTrangThai());
-            ps.executeUpdate();
+            check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return check > 0;
     }
       
-    public void update(SanPham sp) {
+    public boolean update(SanPham sp) {
         sql = "UPDATE san_pham SET ten_san_pham = ?, ngay_sua = GETDATE(), trang_thai = ? WHERE id = ?;";
+        int check = 0;
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, sp.getTen());
             ps.setObject(2, sp.isTrangThai());
             ps.setObject(3, sp.getId());
-            ps.executeUpdate();
+            
+            check = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return check > 0;
     }
 
 }
