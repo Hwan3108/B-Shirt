@@ -4,7 +4,7 @@
  */
 package serviceIMPL;
 
-import model.KhachHang;
+import domainmodel.KhachHang;
 import repository.KhachHangRepository;
 import java.util.ArrayList;
 import service.KhachHangService;

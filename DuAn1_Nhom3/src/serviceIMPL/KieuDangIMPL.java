@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.KieuDang;
+import domainmodel.KieuDang;
 import repository.KieuDangRepository;
 import service.KieuDangService;
 

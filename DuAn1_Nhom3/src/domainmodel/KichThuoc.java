@@ -1,8 +1,8 @@
-package model;
+package domainmodel;
 
 import java.util.Date;
 
-public class ThuongHieu {
+public class KichThuoc {
     private int id;
     private String ma;
     private String ten;
@@ -10,10 +10,10 @@ public class ThuongHieu {
     private Date ngayTao;
     private Date ngaySua;
 
-    public ThuongHieu() {
+    public KichThuoc() {
     }
 
-    public ThuongHieu(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
+    public KichThuoc(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;

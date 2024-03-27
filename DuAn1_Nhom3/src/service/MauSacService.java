@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.MauSac;
+import domainmodel.MauSac;
 
 public interface MauSacService {
     List<MauSac> getALL();

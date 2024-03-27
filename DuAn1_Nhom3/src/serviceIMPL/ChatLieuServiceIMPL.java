@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.ChatLieu;
+import domainmodel.ChatLieu;
 import repository.ChatLieuRepository;
 import service.ChatLieuService;
 

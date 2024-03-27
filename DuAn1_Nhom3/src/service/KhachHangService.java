@@ -1,7 +1,7 @@
 package service;
 
 import java.util.ArrayList;
-import model.KhachHang;
+import domainmodel.KhachHang;
 
 public interface KhachHangService {
     ArrayList<KhachHang> getList();

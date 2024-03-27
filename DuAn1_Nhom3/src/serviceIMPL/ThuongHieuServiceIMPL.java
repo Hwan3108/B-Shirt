@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.ThuongHieu;
+import domainmodel.ThuongHieu;
 import repository.ThuongHieuRepository;
 import service.ThuongHieuService;
 

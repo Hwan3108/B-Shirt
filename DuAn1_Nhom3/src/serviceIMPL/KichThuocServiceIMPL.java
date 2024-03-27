@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.KichThuoc;
+import domainmodel.KichThuoc;
 import repository.KichThuocRepository;
 import service.KichThuocService;
 

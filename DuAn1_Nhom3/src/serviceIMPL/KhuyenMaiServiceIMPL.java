@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.KhuyenMai;
+import domainmodel.KhuyenMai;
 import repository.KhuyenMaiRepository;
 import service.KhuyenMaiService;
 

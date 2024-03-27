@@ -1,4 +1,4 @@
-package model;
+package domainmodel;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

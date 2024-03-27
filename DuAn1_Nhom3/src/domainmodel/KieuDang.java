@@ -1,8 +1,8 @@
-package model;
+package domainmodel;
 
 import java.util.Date;
 
-public class MauSac {
+public class KieuDang {
     private int id;
     private String ma;
     private String ten;
@@ -10,10 +10,10 @@ public class MauSac {
     private Date ngayTao;
     private Date ngaySua;
 
-    public MauSac() {
+    public KieuDang() {
     }
 
-    public MauSac(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
+    public KieuDang(int id, String ma, String ten, boolean trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.ma = ma;
         this.ten = ten;

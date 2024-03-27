@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.MauSac;
+import domainmodel.MauSac;
 
 public class MauSacRepository {
     Connection con = null;

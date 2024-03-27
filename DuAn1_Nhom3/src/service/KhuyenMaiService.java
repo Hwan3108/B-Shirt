@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.KhuyenMai;
+import domainmodel.KhuyenMai;
 
 public interface KhuyenMaiService {
     List<KhuyenMai> getAll();

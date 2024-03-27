@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.HoaTiet;
+import domainmodel.HoaTiet;
 
 public class HoaTietRepository {
     Connection con = null;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.KieuDang;
+import domainmodel.KieuDang;
 
 public class KieuDangRepository {
     Connection con = null;

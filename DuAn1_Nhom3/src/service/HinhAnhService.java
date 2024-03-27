@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.HinhAnh;
+import domainmodel.HinhAnh;
 
 public interface HinhAnhService {
     List<HinhAnh> getAll();

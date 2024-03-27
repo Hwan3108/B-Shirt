@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.SanPham;
+import domainmodel.SanPham;
 
 public interface SanPhamService {
     List<SanPham> getAll();

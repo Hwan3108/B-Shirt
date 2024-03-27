@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.KieuDang;
+import domainmodel.KieuDang;
 
 public interface KieuDangService {
     List<KieuDang> getALL();

@@ -81,6 +81,7 @@ CREATE TABLE phieu_giam_gia(
 	phan_tram_giam DECIMAL(5,2) NULL,
 	ngay_bat_dau DATE NULL,
 	ngay_ket_thuc DATE NULL,
+	mo_ta NVARCHAR(255) NULL,
 	trang_thai INT NULL,
 	ngay_tao DATE NULL,
 	ngay_sua DATE NULL
@@ -150,6 +151,7 @@ CREATE TABLE hoa_don(
 	id_khach_hang INT NULL,
 	id_phieu_giam_gia INT NULL,
 	ma_hoa_don VARCHAR(255) NULL,
+	pttt BIT NULL,
 	trang_thai INT NULL,
 	ngay_tao DATE NULL,
 	ngay_sua DATE NULL
@@ -170,7 +172,6 @@ CREATE TABLE hoa_don_chi_tiet(
 	CONSTRAINT fk_hoa_don FOREIGN KEY (id_hoa_don) REFERENCES hoa_don(id) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_spct FOREIGN KEY (id_spct) REFERENCES spct(id) ON UPDATE CASCADE ON DELETE CASCADE
 )
-select * from nhan_vien
 
 INSERT INTO chat_lieu(ma_chat_lieu, ten_chat_lieu, trang_thai, ngay_tao, ngay_sua)
 VALUES 
@@ -283,18 +284,18 @@ VALUES
     (NEWID(), 'Brand 10', 1, '2024-03-16', '2024-03-16');
 
 
-INSERT INTO phieu_giam_gia (ma_phieu, ten_phieu, phan_tram_giam, ngay_bat_dau, ngay_ket_thuc, trang_thai, ngay_tao, ngay_sua)
+INSERT INTO phieu_giam_gia (ma_phieu, ten_phieu, phan_tram_giam, ngay_bat_dau, ngay_ket_thuc, mo_ta, trang_thai, ngay_tao, ngay_sua)
 VALUES 
-    (NEWID(), 'Discount 1', 10.00, '2024-03-25', '2024-04-25', 1, '2024-03-25', '2024-03-25'),
-    (NEWID(), 'Discount 2', 15.00, '2024-03-24', '2024-04-24', 1, '2024-03-24', '2024-03-24'),
-    (NEWID(), 'Discount 3', 20.00, '2024-03-23', '2024-04-23', 1, '2024-03-23', '2024-03-23'),
-    (NEWID(), 'Discount 4', 25.00, '2024-03-22', '2024-04-22', 1, '2024-03-22', '2024-03-22'),
-    (NEWID(), 'Discount 5', 30.00, '2024-03-21', '2024-04-21', 1, '2024-03-21', '2024-03-21'),
-    (NEWID(), 'Discount 6', 35.00, '2024-03-20', '2024-04-20', 1, '2024-03-20', '2024-03-20'),
-    (NEWID(), 'Discount 7', 40.00, '2024-03-19', '2024-04-19', 1, '2024-03-19', '2024-03-19'),
-    (NEWID(), 'Discount 8', 45.00, '2024-03-18', '2024-04-18', 1, '2024-03-18', '2024-03-18'),
-    (NEWID(), 'Discount 9', 50.00, '2024-03-17', '2024-04-17', 1, '2024-03-17', '2024-03-17'),
-    (NEWID(), 'Discount 10', 55.00, '2024-03-16', '2024-04-16', 1, '2024-03-16', '2024-03-16');
+    ('12345678901234', 'Discount 1', 10.00, '2024-03-25', '2024-04-25', 'Description 1', 1, '2024-03-25', '2024-03-25'),
+    ('23456789012345', 'Discount 2', 15.00, '2024-03-24', '2024-04-24', 'Description 2', 2, '2024-03-24', '2024-03-24'),
+    ('34567890123456', 'Discount 3', 20.00, '2024-03-23', '2024-04-23', 'Description 3', 3, '2024-03-23', '2024-03-23'),
+    ('45678901234567', 'Discount 4', 25.00, '2024-03-22', '2024-04-22', 'Description 4', 1, '2024-03-22', '2024-03-22'),
+    ('56789012345678', 'Discount 5', 30.00, '2024-03-21', '2024-04-21', 'Description 5', 2, '2024-03-21', '2024-03-21'),
+    ('67890123456789', 'Discount 6', 35.00, '2024-03-20', '2024-04-20', 'Description 6', 3, '2024-03-20', '2024-03-20'),
+    ('78901234567890', 'Discount 7', 40.00, '2024-03-19', '2024-04-19', 'Description 7', 1, '2024-03-19', '2024-03-19'),
+    ('89012345678901', 'Discount 8', 45.00, '2024-03-18', '2024-04-18', 'Description 8', 2, '2024-03-18', '2024-03-18'),
+    ('90123456789012', 'Discount 9', 49.00, '2024-03-17', '2024-04-17', 'Description 9', 3, '2024-03-17', '2024-03-17'),
+    ('01234567890123', 'Discount 10', 48.00, '2024-03-16', '2024-04-16', 'Description 10', 1, '2024-03-16', '2024-03-16');
 
 INSERT INTO khach_hang (ma_khach_hang, ten_khach_hang, sdt, ngay_sinh, gioi_tinh, dia_chi, email, cccd, trang_thai, ngay_tao, ngay_sua)
 VALUES 
@@ -309,6 +310,18 @@ VALUES
     (NEWID(), 'Customer 9', '1234567898', '1998-09-09', 1, 'Address 9', 'customer9@example.com', '123456781', 1, '2024-03-17', '2024-03-17'),
     (NEWID(), 'Customer 10', '1234567899', '1999-10-10', 0, 'Address 10', 'customer10@example.com', '123456780', 1, '2024-03-16', '2024-03-16');
 
+INSERT INTO nhan_vien (ma_nhan_vien, ten_nhan_vien, mat_khau, chuc_vu, sdt, ngay_sinh, gioi_tinh,  dia_chi, email, cccd, trang_thai, ngay_tao, ngay_sua)
+VALUES
+    (NEWID(), 'Employee 1', 'password1', 0, '0987654321', '1990-01-01', 1, 'Address 1', 'employee1@example.com', '001234567890', 1, '2024-03-25', '2024-03-25'),
+    (NEWID(), 'Employee 2', 'password2', 1, '0123456789', '1991-02-02', 0, 'Address 2', 'employee2@example.com', '001234567891', 1, '2024-03-24', '2024-03-24'),
+    (NEWID(), 'Employee 3', 'password3', 0, '08768q2634', '1992-03-03', 1, 'Address 3', 'employee3@example.com', '001234567892', 1, '2024-03-23', '2024-03-23'),
+    (NEWID(), 'Employee 4', 'password4', 1, '0432617732', '1993-04-04', 0, 'Address 4', 'employee4@example.com', '001234567893', 1, '2024-03-22', '2024-03-22'),
+    (NEWID(), 'Employee 5', 'password5', 0, '0984712039', '1994-05-05', 1, 'Address 5', 'employee5@example.com', '001234567894', 1, '2024-03-21', '2024-03-21'),
+    (NEWID(), 'Employee 6', 'password6', 1, '0018327479', '1995-06-06', 0, 'Address 6', 'employee6@example.com', '001234567895', 2, '2024-03-20', '2024-03-20'),
+    (NEWID(), 'Employee 7', 'password7', 0, '0219379385', '1996-07-07', 1, 'Address 7', 'employee7@example.com', '001234567896', 2, '2024-03-19', '2024-03-19'),
+    (NEWID(), 'Employee 8', 'password8', 1, '0432198704', '1997-08-08', 0, 'Address 8', 'employee8@example.com', '001234567897', 3, '2024-03-18', '2024-03-18'),
+    (NEWID(), 'Employee 9', 'password9', 0, '0374321183', '1998-09-09', 1, 'Address 9', 'employee9@example.com', '001234567898', 3, '2024-03-17', '2024-03-17'),
+    (NEWID(), 'Employee 10', 'password10', 1, '0473129807', '1999-10-10', 0, 'Address 10', 'employee10@example.com', '001234567899', 3, '2024-03-16', '2024-03-16');
 
 INSERT INTO spct (id_chat_lieu, id_hinh_anh, id_hoa_tiet, id_kich_thuoc, id_kieu_dang, id_mau_sac, id_san_pham, id_thuong_hieu, ma_spct, so_luong, gia, mo_ta, trang_thai, ngay_tao, ngay_sua)
 VALUES 
@@ -323,32 +336,18 @@ VALUES
     (9, 9, 9, 9, 9, 9, 9, 9, NEWID(), 90, 900.00, 'Description 9', 1, '2024-03-17', '2024-03-17'),
     (10, 10, 10, 10, 10, 10, 10, 10, NEWID(), 100, 1000.00, 'Description 10', 1, '2024-03-16', '2024-03-16');
 
-INSERT INTO nhan_vien (ma_nhan_vien, ten_nhan_vien, mat_khau, chuc_vu, sdt, ngay_sinh, gioi_tinh, dia_chi, email, cccd, trang_thai, ngay_tao, ngay_sua)
+INSERT INTO hoa_don (id_nhan_vien, id_khach_hang, id_phieu_giam_gia, ma_hoa_don, pttt, trang_thai, ngay_tao, ngay_sua)
 VALUES
-    ('NV001', N'Nhân viên 1', 'password1', 1, '1234567890', '1990-01-01', 1, N'Địa chỉ 1', 'nhanvien1@example.com', '123456789', 1, '2024-03-25', '2024-03-25'),
-    ('NV002', N'Nhân viên 2', 'password2', 0, '1234567891', '1991-02-02', 0, N'Địa chỉ 2', 'nhanvien2@example.com', '123456788', 1, '2024-03-24', '2024-03-24'),
-    ('NV003', N'Nhân viên 3', 'password3', 1, '1234567892', '1992-03-03', 1, N'Địa chỉ 3', 'nhanvien3@example.com', '123456787', 1, '2024-03-23', '2024-03-23'),
-    ('NV004', N'Nhân viên 4', 'password4', 0, '1234567893', '1993-04-04', 0, N'Địa chỉ 4', 'nhanvien4@example.com', '123456786', 1, '2024-03-22', '2024-03-22'),
-    ('NV005', N'Nhân viên 5', 'password5', 1, '1234567894', '1994-05-05', 1, N'Địa chỉ 5', 'nhanvien5@example.com', '123456785', 1, '2024-03-21', '2024-03-21'),
-    ('NV006', N'Nhân viên 6', 'password6', 0, '1234567895', '1995-06-06', 0, N'Địa chỉ 6', 'nhanvien6@example.com', '123456784', 1, '2024-03-20', '2024-03-20'),
-    ('NV007', N'Nhân viên 7', 'password7', 1, '1234567896', '1996-07-07', 1, N'Địa chỉ 7', 'nhanvien7@example.com', '123456783', 1, '2024-03-19', '2024-03-19'),
-    ('NV008', N'Nhân viên 8', 'password8', 0, '1234567897', '1997-08-08', 0, N'Địa chỉ 8', 'nhanvien8@example.com', '123456782', 1, '2024-03-18', '2024-03-18'),
-    ('NV009', N'Nhân viên 9', 'password9', 1, '1234567898', '1998-09-09', 1, N'Địa chỉ 9', 'nhanvien9@example.com', '123456781', 1, '2024-03-17', '2024-03-17'),
-    ('NV010', N'Nhân viên 10', 'password10', 0, '1234567899', '1999-10-10', 0, N'Địa chỉ 10', 'nhanvien10@example.com', '123456780', 1, '2024-03-16', '2024-03-16');
-
-INSERT INTO hoa_don (id_nhan_vien, id_khach_hang, id_phieu_giam_gia, ma_hoa_don, trang_thai, ngay_tao, ngay_sua)
-VALUES 
-    (1, 1, 1, NEWID(), 1, '2024-03-25', '2024-03-25'),
-    (2, 2, 2, NEWID(), 1, '2024-03-24', '2024-03-24'),
-    (3, 3, 3, NEWID(), 1, '2024-03-23', '2024-03-23'),
-    (4, 4, 4, NEWID(), 1, '2024-03-22', '2024-03-22'),
-    (5, 5, 5, NEWID(), 1, '2024-03-21', '2024-03-21'),
-    (6, 6, 6, NEWID(), 1, '2024-03-20', '2024-03-20'),
-    (7, 7, 7, NEWID(), 1, '2024-03-19', '2024-03-19'),
-    (8, 8, 8, NEWID(), 1, '2024-03-18', '2024-03-18'),
-    (9, 9, 9, NEWID(), 1, '2024-03-17', '2024-03-17'),
-    (10, 10, 10, NEWID(), 1, '2024-03-16', '2024-03-16');
-
+    (1, 1, 1, NEWID(), 1, 1, '2024-03-25', '2024-03-25'),
+    (2, 2, 2, NEWID(), 0, 1, '2024-03-24', '2024-03-24'),
+    (3, 3, 3, NEWID(), 1, 1, '2024-03-23', '2024-03-23'),
+    (4, 4, 4, NEWID(), 0, 1, '2024-03-22', '2024-03-22'),
+    (5, 5, 5, NEWID(), 1, 1, '2024-03-21', '2024-03-21'),
+    (6, 6, 6, NEWID(), 0, 1, '2024-03-20', '2024-03-20'),
+    (7, 7, 7, NEWID(), 1, 1, '2024-03-19', '2024-03-19'),
+    (8, 8, 8, NEWID(), 0, 1, '2024-03-18', '2024-03-18'),
+    (9, 9, 9, NEWID(), 1, 1, '2024-03-17', '2024-03-17'),
+    (10, 10, 10, NEWID(), 0, 1, '2024-03-16', '2024-03-16');
 
 INSERT INTO hoa_don_chi_tiet (id_hoa_don, id_spct, so_luong, don_gia, trang_thai, ngay_tao, ngay_sua)
 VALUES 
@@ -378,4 +377,21 @@ DELETE FROM phieu_giam_gia
 DELETE FROM san_pham
 DELETE FROM spct
 DELETE FROM thuong_hieu
+*/
+
+/* SELECT DỮ LIỆU
+SELECT * FROM chat_lieu
+SELECT * FROM hinh_anh
+SELECT * FROM hoa_don
+SELECT * FROM hoa_don_chi_tiet
+SELECT * FROM hoa_tiet
+SELECT * FROM khach_hang
+SELECT * FROM kich_thuoc
+SELECT * FROM kieu_dang
+SELECT * FROM mau_sac
+SELECT * FROM nhan_vien
+SELECT * FROM phieu_giam_gia
+SELECT * FROM san_pham
+SELECT * FROM spct
+SELECT * FROM thuong_hieu
 */

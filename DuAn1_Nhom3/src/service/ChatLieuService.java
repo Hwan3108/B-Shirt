@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.ChatLieu;
+import domainmodel.ChatLieu;
 
 public interface ChatLieuService {
     List<ChatLieu> getAll();

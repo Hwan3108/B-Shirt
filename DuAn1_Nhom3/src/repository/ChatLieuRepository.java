@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.ChatLieu;
+import domainmodel.ChatLieu;
 
 public class ChatLieuRepository {
     Connection con = null;

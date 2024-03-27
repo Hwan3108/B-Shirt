@@ -1,4 +1,4 @@
-package model;
+package domainmodel;
 
 import java.util.Date;
 
@@ -117,4 +117,5 @@ public class HoaDon {
             return "Chuyển khoản";
         }
     }
+    
 }

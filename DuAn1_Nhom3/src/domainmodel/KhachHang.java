@@ -1,5 +1,5 @@
 
-package model;
+package domainmodel;
 
 import java.util.Date;
 

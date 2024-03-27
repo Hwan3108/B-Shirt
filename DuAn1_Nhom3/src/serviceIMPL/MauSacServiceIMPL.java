@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.MauSac;
+import domainmodel.MauSac;
 import repository.MauSacRepository;
 import service.MauSacService;
 

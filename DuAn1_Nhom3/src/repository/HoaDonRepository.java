@@ -1,10 +1,12 @@
 package repository;
 
-import model.HoaDon;
+import domainmodel.HoaDon;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.sql.*;
+import java.util.List;
 import ultilities.DBConnect;
+import view.model.HoaDonViewModel;
 
 public class HoaDonRepository {
     Connection con = null;
@@ -64,6 +66,24 @@ public class HoaDonRepository {
         }
         return list;
     }
+    public List<HoaDonViewModel> getBHView() {
+        sql = "SELECT id, ma_hoa_don, ngay_tao, trang_thai FROM hoa_don ORDER BY id DESC";
+        List<HoaDonViewModel> listView = new ArrayList<>();
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                HoaDonViewModel hdview = new HoaDonViewModel(rs.getInt(1), rs.getString(2), rs.getDate(3), rs.getInt(4));
+                listView.add(hdview);
+            }
+            return listView;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
         
     public void create() {
         sql =   "INSERT INTO hoa_don (ma_hoa_don,trang_thai,ngay_tao,ngay_sua)\n" +
@@ -78,13 +98,13 @@ public class HoaDonRepository {
         }
     }
     
-    public void cancel(int id) {
-        sql = "UPDATE hoa_don SET trang_thai = 3 WHERE id = ?";
+    public void cancel(String ma) {
+        sql = "UPDATE hoa_don SET trang_thai = 3 WHERE ma_hoa_don = ?";
         
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, id);
+            ps.setObject(1, ma);
             
             ps.executeUpdate();
         } catch (Exception e) {

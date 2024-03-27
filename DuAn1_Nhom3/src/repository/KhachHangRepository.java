@@ -4,7 +4,7 @@
  */
 package repository;
 
-import model.KhachHang;
+import domainmodel.KhachHang;
 import java.util.ArrayList;
 import java.sql.*;
 import java.text.DateFormat;

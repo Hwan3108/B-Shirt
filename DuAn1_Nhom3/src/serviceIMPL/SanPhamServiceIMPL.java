@@ -1,7 +1,7 @@
 package serviceIMPL;
 
 import java.util.List;
-import model.SanPham;
+import domainmodel.SanPham;
 import repository.SanPhamRepository;
 import service.SanPhamService;
 

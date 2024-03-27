@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.ThuongHieu;
+import domainmodel.ThuongHieu;
 
 public interface ThuongHieuService {
     List<ThuongHieu> getALL();

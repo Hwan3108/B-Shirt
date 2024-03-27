@@ -1,7 +1,7 @@
 package service;
 
 import java.util.List;
-import model.KichThuoc;
+import domainmodel.KichThuoc;
 
 public interface KichThuocService {
     List<KichThuoc> getALL();

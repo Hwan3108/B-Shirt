@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.ThuongHieu;
+import domainmodel.ThuongHieu;
 
 public class ThuongHieuRepository {
     Connection con = null;

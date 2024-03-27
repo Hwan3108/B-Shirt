@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
-import model.HinhAnh;
+import domainmodel.HinhAnh;
 
 public class HinhAnhRepository {
     Connection con = null;

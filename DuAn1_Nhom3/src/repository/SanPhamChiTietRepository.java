@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import model.SanPhamChiTiet;
+import domainmodel.SanPhamChiTiet;
 import ultilities.DBConnect;
+import view.model.SPCTViewModel;
+import view.model.SanPhamViewModel;
 
 public class SanPhamChiTietRepository {
     Connection con = null;
@@ -14,17 +16,9 @@ public class SanPhamChiTietRepository {
     ResultSet rs = null;
     String sql = null;
     
+    
     public List<SanPhamChiTiet> getAll() {
-        sql =   "SELECT SPCT.*, CL.ten_chat_lieu, HA.duong_dan, HT.ten_hoa_tiet, KT.ten_kich_thuoc,"
-                + "KD.ten_kieu_dang, MS.ten_mau, SP.ten_san_pham, TH.ten_thuong_hieu FROM spct\n" +
-                "INNER JOIN chat_lieu CL ON CL.id = SPCT.id_chat_lieu "
-                + "INNER JOIN hinh_anh HA ON HA.id = SPCT.id_hinh_anh "
-                + "INNER JOIN hoa_tiet HT ON HT.id = SPCT.id_hoa_tiet\n" +
-                "INNER JOIN kich_thuoc KT ON KT.id = SPCT.id_kich_thuoc "
-                + "INNER JOIN kieu_dang KD ON KD.id = SPCT.id_kieu_dang "
-                + "INNER JOIN mau_sac MS ON MS.id = SPCT.id_mau_sac\n" +
-                "INNER JOIN san_pham SP ON SP.id = SPCT.id_san_pham "
-                + "INNER JOIN thuong_hieu TH ON TH.id = SPCT.id_thuong_hieu";
+        sql = "SELECT * FROM spct";
         List<SanPhamChiTiet> listSPCT = new ArrayList<>();
         
         try {
@@ -39,6 +33,48 @@ public class SanPhamChiTietRepository {
                 listSPCT.add(spct);
             }
             return listSPCT;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<SanPhamViewModel> getSPView() {
+        sql =   "SELECT SP.id, SP.ma_san_pham, SP.ten_san_pham, so_luong, ten_chat_lieu, ten_kieu_dang, ten_thuong_hieu, mo_ta, SP.trang_thai FROM spct\n" +
+                "INNER JOIN chat_lieu CL ON CL.id = SPCT.id_chat_lieu\n" +
+                "INNER JOIN kieu_dang KD ON KD.id = SPCT.id_kieu_dang\n" +
+                "INNER JOIN san_pham SP ON SP.id = SPCT.id_san_pham\n" +
+                "INNER JOIN thuong_hieu TH ON TH.id = SPCT.id_thuong_hieu";
+        List<SanPhamViewModel> listView = new ArrayList<>();
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                SanPhamViewModel view = new SanPhamViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(9));
+                listView.add(view);
+            }
+            return listView;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<SPCTViewModel> getSPCTView() {
+        sql = "";
+        List<SPCTViewModel> list = new ArrayList<>();
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                SPCTViewModel spctv = new SPCTViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDouble(7));
+                list.add(spctv);
+            }
+            return list;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
