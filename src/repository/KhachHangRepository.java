@@ -37,7 +37,7 @@ public class KhachHangRepository {
                 Date ngayTao = (Date) Date.valueOf(rs.getString("ngay_tao"));
                 Date ngaySua = (Date) Date.valueOf(rs.getString("ngay_sua"));
                 boolean trangThai = rs.getBoolean("trang_thai");
-                KhachHang khachHang = new KhachHang(id, maKH, ten,SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang(id, maKH, ten, SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
                 list.add(khachHang);
             }
         } catch (Exception e) {
@@ -47,8 +47,8 @@ public class KhachHangRepository {
     }
 
     public boolean add(KhachHang kh) {
-        String sql = "INSERT INTO khach_hang (ma_khach_hang, ten_khach_hang, sdt, ngay_sinh, gioi_tinh, dia_chi, email, cccd, trang_thai, ngay_tao, ngay_sua)\n" +
-                        "VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), GETDATE())";
+        String sql = "INSERT INTO khach_hang (ma_khach_hang, ten_khach_hang, sdt, ngay_sinh, gioi_tinh, dia_chi, email, cccd, trang_thai, ngay_tao, ngay_sua)\n"
+                + "VALUES (NEWID(), ?, ?, ?, ?, ?, ?, ?, ?, GETDATE(), GETDATE())";
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
             pst.setString(1, kh.getTen());
             pst.setString(2, kh.getSDT());
@@ -91,7 +91,7 @@ public class KhachHangRepository {
 
     public ArrayList<KhachHang> search(int idKH) {
         ArrayList<KhachHang> list = new ArrayList<>();
-        String sql = "select * from KhachHang where id like '%"+idKH+"%'";
+        String sql = "select * from KhachHang where id like '%" + idKH + "%'";
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -107,7 +107,7 @@ public class KhachHangRepository {
                 Date ngayTao = (Date) Date.valueOf(rs.getString("ngay_tao"));
                 Date ngaySua = (Date) Date.valueOf(rs.getString("ngay_sua"));
                 boolean trangThai = rs.getBoolean("trang_thai");
-                KhachHang khachHang = new KhachHang(id, maKH, ten,SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang(id, maKH, ten, SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
                 list.add(khachHang);
             }
         } catch (Exception e) {
@@ -115,14 +115,17 @@ public class KhachHangRepository {
         }
         return list;
     }
-     public ArrayList<KhachHang> searchGT(ArrayList<KhachHang> kist, String sex) {
+
+    public ArrayList<KhachHang> searchGT(int gt) {
+        String sql = "select * from khach_hang where gioi_tinh ="+gt+" ";
         ArrayList<KhachHang> list = new ArrayList<>();
-        String sql = "select * from KhachHang where gioiTinh like '%"+sex+"%'";
+
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+         
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String maKH = rs.getString("id_khach_hang");
+                String maKH = rs.getString("ma_khach_hang");
                 String ten = rs.getString("ten_khach_hang");
                 String SDT = rs.getString("sdt");
                 String diaChi = rs.getString("dia_chi");
@@ -133,7 +136,7 @@ public class KhachHangRepository {
                 Date ngayTao = (Date) Date.valueOf(rs.getString("ngay_tao"));
                 Date ngaySua = (Date) Date.valueOf(rs.getString("ngay_sua"));
                 boolean trangThai = rs.getBoolean("trang_thai");
-                KhachHang khachHang = new KhachHang(id, maKH, ten,SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
+                KhachHang khachHang = new KhachHang(id, maKH, ten, SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
                 list.add(khachHang);
             }
         } catch (Exception e) {

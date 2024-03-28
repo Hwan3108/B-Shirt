@@ -8,5 +8,5 @@ public interface KhachHangService {
     String add(KhachHang kh);
     String update(KhachHang kh);
     ArrayList<KhachHang> search(int id);
-    ArrayList<KhachHang> listNam(ArrayList<KhachHang> list);
+    ArrayList<KhachHang> getGt(int Gt);
 }

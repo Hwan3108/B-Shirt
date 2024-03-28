@@ -46,13 +46,9 @@ public class QuanLyKhachHang implements KhachHangService{
     }
 
     @Override
-    public ArrayList<KhachHang> listNam(ArrayList<KhachHang> list) {
-        ArrayList<KhachHang> listNam = new ArrayList<>();
-        for (KhachHang kh : listNam ) {
-            if (kh.isGioiTinh() == true) {
-                listNam.add(kh);
-            } 
-        }
-        return listNam ;
+    public ArrayList<KhachHang> getGt(int Gt) {
+          return hangRepository.searchGT(Gt);
     }
+    
+    
 }
