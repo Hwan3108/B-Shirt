@@ -40,11 +40,14 @@ public class SanPhamChiTietRepository {
     }
     
     public List<SanPhamViewModel> getSPView() {
-        sql =   "SELECT SP.id, SP.ma_san_pham, SP.ten_san_pham, so_luong, ten_chat_lieu, ten_kieu_dang, ten_thuong_hieu, mo_ta, SP.trang_thai FROM spct\n" +
+        sql =   "SELECT SP.id, SP.ma_san_pham, SP.ten_san_pham, SUM(so_luong) as N'Số lượng' , ten_chat_lieu, ten_kieu_dang, ten_hoa_tiet, ten_thuong_hieu, SP.trang_thai FROM spct\n" +
                 "INNER JOIN chat_lieu CL ON CL.id = SPCT.id_chat_lieu\n" +
                 "INNER JOIN kieu_dang KD ON KD.id = SPCT.id_kieu_dang\n" +
                 "INNER JOIN san_pham SP ON SP.id = SPCT.id_san_pham\n" +
-                "INNER JOIN thuong_hieu TH ON TH.id = SPCT.id_thuong_hieu";
+                "INNER JOIN hoa_tiet HT ON HT.id = SPCT.id_hoa_tiet\n" +
+                "INNER JOIN thuong_hieu TH ON TH.id = SPCT.id_thuong_hieu\n" +
+                "GROUP BY SP.id, SP.ma_san_pham, SP.ten_san_pham, ten_chat_lieu, ten_kieu_dang, ten_hoa_tiet, ten_thuong_hieu, SP.trang_thai\n" +
+                "ORDER BY SP.id ASC";
         List<SanPhamViewModel> listView = new ArrayList<>();
         
         try {
@@ -63,7 +66,10 @@ public class SanPhamChiTietRepository {
     }
     
     public List<SPCTViewModel> getSPCTView() {
-        sql = "";
+        sql =   "SELECT spct.id, SP.id, spct.ma_spct, KT.ten_kich_thuoc, MS.ten_mau, so_luong, gia, spct.trang_thai FROM spct\n" +
+                "INNER JOIN san_pham SP ON SP.id = spct.id_san_pham\n" +
+                "INNER JOIN kich_thuoc KT ON KT.id = spct.id_kich_thuoc\n" +
+                "INNER JOIN mau_sac MS ON MS.id = spct.id_mau_sac";
         List<SPCTViewModel> list = new ArrayList<>();
         
         try {
@@ -71,7 +77,7 @@ public class SanPhamChiTietRepository {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()) {
-                SPCTViewModel spctv = new SPCTViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDouble(7));
+                SPCTViewModel spctv = new SPCTViewModel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getDouble(7), rs.getInt(8));
                 list.add(spctv);
             }
             return list;

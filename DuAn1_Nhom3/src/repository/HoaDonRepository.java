@@ -98,13 +98,21 @@ public class HoaDonRepository {
         }
     }
     
-    public void cancel(String ma) {
-        sql = "UPDATE hoa_don SET trang_thai = 3 WHERE ma_hoa_don = ?";
+    public void cancel(int id) {
+        sql =   "UPDATE hoa_don SET trang_thai = 3, ngay_sua = GETDATE() WHERE id = ?\n" +
+                "UPDATE spct SET spct.so_luong += hoa_don_chi_tiet.so_luong FROM spct\n" +
+                "INNER JOIN hoa_don_chi_tiet ON spct.id = hoa_don_chi_tiet.id_spct\n" +
+                "WHERE hoa_don_chi_tiet.id_hoa_don = ? and hoa_don_chi_tiet.id_spct = spct.id\n" +
+                "UPDATE hoa_don_chi_tiet SET id_hoa_don = NULL, id_spct = NULL, so_luong = NULL," +
+                "don_gia = NULL, trang_thai = 0, ngay_sua = GETDATE() WHERE id_hoa_don = ?";
         
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, ma);
+            ps.setObject(1, id);
+            ps.setObject(2, id);
+            ps.setObject(3, id);
+            
             
             ps.executeUpdate();
         } catch (Exception e) {
@@ -113,14 +121,33 @@ public class HoaDonRepository {
     }
     
     public boolean checkout(HoaDon hd, int id) {
-        sql =   "UPDATE hoa_don SET id_khach_hang = ?, id_phieu_giam_gia = ?, pttt = ?, trang_thai = 1,"
-                + "ngay_sua = GETDATE() WHERE id = ?";
+        sql =   "UPDATE hoa_don SET id_nhan_vien = ?, id_khach_hang = ?, id_phieu_giam_gia = ?, pttt = ?, trang_thai = 1, ngay_sua = GETDATE() WHERE id = ?";
         int check = 0;
         
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, hd.getIdKhachHang());
+            ps.setObject(1, hd.getIdNhanVien());
+            ps.setObject(2, hd.getIdKhachHang());
+            ps.setObject(3, hd.getIdPhieuGiamGia());
+            ps.setObject(4, hd.isPTTT());
+            ps.setObject(5, id);
+            
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+    
+    public boolean khachLe(HoaDon hd, int id) {
+        sql =   "UPDATE hoa_don SET id_nhan_vien = ?, id_phieu_giam_gia = ?, pttt = ?, trang_thai = 1, ngay_sua = GETDATE() WHERE id = ?";
+        int check = 0;
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, hd.getIdNhanVien());
             ps.setObject(2, hd.getIdPhieuGiamGia());
             ps.setObject(3, hd.isPTTT());
             ps.setObject(4, id);

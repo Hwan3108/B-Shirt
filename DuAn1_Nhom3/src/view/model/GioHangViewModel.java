@@ -19,9 +19,7 @@ public class GioHangViewModel {
         this.donGia = donGia;
         this.trangThai = trangThai;
     }
-
     
-
     public int getId() {
         return id;
     }
@@ -29,7 +27,7 @@ public class GioHangViewModel {
     public void setId(int id) {
         this.id = id;
     }
-
+    
     public String getMaSP() {
         return maSP;
     }

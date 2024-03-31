@@ -25,13 +25,20 @@ public class QuanLyHoaDon implements HoaDonService{
     }
 
     @Override
-    public void cancel(String ma) {
-        repository.cancel(ma);
+    public void cancel(int id) {
+        repository.cancel(id);
     }
 
     @Override
-    public void checkout(HoaDon hd, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String checkout(HoaDon hd, int id) {
+        if (hd.getIdNhanVien() == 0) {
+            return "Không được để trống id nhân viên";
+        }
+        else if(repository.checkout(hd, id)) {
+            return "Thanh toán thành công";
+        } else {
+            return "Không thể thanh toán hoá đơn";
+        }
     }
 
     @Override
@@ -48,5 +55,17 @@ public class QuanLyHoaDon implements HoaDonService{
             }
         }
         return listSearch;
+    }
+
+    @Override
+    public String khachLe(HoaDon hd, int id) {
+        if (hd.getIdNhanVien() == 0) {
+            return "Không được để trống id nhân viên";
+        }
+        else if(repository.khachLe(hd, id)) {
+            return "Thanh toán thành công";
+        } else {
+            return "Không thể thanh toán hoá đơn";
+        }
     }
 }

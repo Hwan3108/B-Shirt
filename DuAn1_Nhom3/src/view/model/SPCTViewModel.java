@@ -2,26 +2,35 @@ package view.model;
 
 public class SPCTViewModel {
     private int id;
+    private int idSP;
     private String maSPCT;
     private String kichThuoc;
     private String mauSac;
-    private String hinhAnh;
-    private String hoaTiet;
     private int soLuong;
     private Double gia;
+    private int trangThai;
 
     public SPCTViewModel() {
     }
 
-    public SPCTViewModel(int id, String maSPCT, String kichThuoc, String mauSac, String hinhAnh, String hoaTiet, int soLuong, Double gia) {
+    public SPCTViewModel(int id) {
         this.id = id;
+    }
+
+    public SPCTViewModel(int id, Double gia) {
+        this.id = id;
+        this.gia = gia;
+    }
+
+    public SPCTViewModel(int id, int idSP, String maSPCT, String kichThuoc, String mauSac, int soLuong, Double gia, int trangThai) {
+        this.id = id;
+        this.idSP = idSP;
         this.maSPCT = maSPCT;
         this.kichThuoc = kichThuoc;
         this.mauSac = mauSac;
-        this.hinhAnh = hinhAnh;
-        this.hoaTiet = hoaTiet;
         this.soLuong = soLuong;
         this.gia = gia;
+        this.trangThai = trangThai;
     }
 
     public int getId() {
@@ -30,6 +39,14 @@ public class SPCTViewModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdSP() {
+        return idSP;
+    }
+
+    public void setIdSP(int idSP) {
+        this.idSP = idSP;
     }
 
     public String getMaSPCT() {
@@ -56,22 +73,6 @@ public class SPCTViewModel {
         this.mauSac = mauSac;
     }
 
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    }
-
-    public String getHoaTiet() {
-        return hoaTiet;
-    }
-
-    public void setHoaTiet(String hoaTiet) {
-        this.hoaTiet = hoaTiet;
-    }
-
     public int getSoLuong() {
         return soLuong;
     }
@@ -88,9 +89,17 @@ public class SPCTViewModel {
         this.gia = gia;
     }
 
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
+    }
+
     
     
     public Object[] toDataRow() {
-        return new Object[] {this.id, this.maSPCT, this.kichThuoc, this.mauSac, this.hinhAnh, this.hoaTiet, this.soLuong, this.gia};
+        return new Object[] {this.id, this.maSPCT, this.kichThuoc, this.mauSac, this.soLuong, this.gia};
     }
 }

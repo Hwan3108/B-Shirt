@@ -16,6 +16,30 @@ public class HoaDon {
     public HoaDon() {
     }
 
+    public HoaDon(int id, int idNhanVien, String maHoaDon, boolean PTTT) {
+        this.id = id;
+        this.idNhanVien = idNhanVien;
+        this.maHoaDon = maHoaDon;
+        this.PTTT = PTTT;
+    }
+
+    public HoaDon(int id, int idNhanVien, int idPhieuGiamGia, String maHoaDon, boolean PTTT) {
+        this.id = id;
+        this.idNhanVien = idNhanVien;
+        this.idPhieuGiamGia = idPhieuGiamGia;
+        this.maHoaDon = maHoaDon;
+        this.PTTT = PTTT;
+    }
+
+    public HoaDon(int id, int idNhanVien, int idKhachHang, int idPhieuGiamGia, String maHoaDon, boolean PTTT) {
+        this.id = id;
+        this.idNhanVien = idNhanVien;
+        this.idKhachHang = idKhachHang;
+        this.idPhieuGiamGia = idPhieuGiamGia;
+        this.maHoaDon = maHoaDon;
+        this.PTTT = PTTT;
+    }
+    
     public HoaDon(int id, int idNhanVien, int idKhachHang, int idPhieuGiamGia, String maHoaDon, boolean PTTT, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.idNhanVien = idNhanVien;

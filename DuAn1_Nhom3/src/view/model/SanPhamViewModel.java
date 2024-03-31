@@ -7,22 +7,24 @@ public class SanPhamViewModel {
     private int soLuong;
     private String chatLieu;
     private String kieuDang;
+    private String hoaTiet;
     private String thuongHieu;
-    private String moTa;
     private boolean trangThai;
 
     public SanPhamViewModel() {
     }
+    
+    
 
-    public SanPhamViewModel(int id, String maSP, String tenSP, int soLuong, String chatLieu, String kieuDang, String thuongHieu, String moTa, boolean trangThai) {
+    public SanPhamViewModel(int id, String maSP, String tenSP, int soLuong, String chatLieu, String kieuDang, String hoaTiet, String thuongHieu, boolean trangThai) {
         this.id = id;
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.soLuong = soLuong;
         this.chatLieu = chatLieu;
         this.kieuDang = kieuDang;
+        this.hoaTiet = hoaTiet;
         this.thuongHieu = thuongHieu;
-        this.moTa = moTa;
         this.trangThai = trangThai;
     }
 
@@ -74,20 +76,20 @@ public class SanPhamViewModel {
         this.kieuDang = kieuDang;
     }
 
+    public String getHoaTiet() {
+        return hoaTiet;
+    }
+
+    public void setHoaTiet(String hoaTiet) {
+        this.hoaTiet = hoaTiet;
+    }
+
     public String getThuongHieu() {
         return thuongHieu;
     }
 
     public void setThuongHieu(String thuongHieu) {
         this.thuongHieu = thuongHieu;
-    }
-
-    public String getMoTa() {
-        return moTa;
-    }
-
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
     }
 
     public boolean isTrangThai() {
@@ -98,9 +100,7 @@ public class SanPhamViewModel {
         this.trangThai = trangThai;
     }
 
-    
-
     public Object[] toDataRow() {
-        return new Object[] {this.id, this.maSP, this.tenSP, this.soLuong, this.chatLieu, this.kieuDang, this.thuongHieu, this.moTa};
+        return new Object[] {this.id, this.maSP, this.tenSP, this.soLuong, this.chatLieu, this.kieuDang, this.hoaTiet, this.thuongHieu};
     }
 }
