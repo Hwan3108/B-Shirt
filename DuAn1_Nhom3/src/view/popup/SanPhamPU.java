@@ -1,5 +1,6 @@
 package view.popup;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,10 +19,12 @@ public class SanPhamPU extends javax.swing.JFrame {
     private BanHangPanel parentForm;
     private int index;
     private int HoaDonId;
+    List<Integer> listSPGH = new ArrayList<>();
     
     
-    public SanPhamPU(int index, int HoaDonId) {
+    public SanPhamPU(int index, int HoaDonId, List<Integer> listSPGH) {
         initComponents();
+        this.listSPGH = listSPGH;
         this.index = index;
         this.HoaDonId = HoaDonId;
         setLocationRelativeTo(null);
@@ -30,18 +33,17 @@ public class SanPhamPU extends javax.swing.JFrame {
         List<SPCTViewModel> listSP = service.getSPCTView();
         this.fillTable(listSP);
         btnThem.setEnabled(false);
-        
     }
 
     private SanPhamPU() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     void fillTable(List<SPCTViewModel> list) {
         model = (DefaultTableModel) tblSPCT.getModel();
         model.setRowCount(0);
         for (SPCTViewModel x: list) {
-            if(x.getTrangThai() == 1 && x.getIdSP() == index) {
+            if(x.getTrangThai() == 1 && x.getIdSP() == index && !listSPGH.contains(x.getId()) && x.getSoLuong() != 0) {
                 model.addRow(x.toDataRow());
             }
         }
@@ -229,41 +231,49 @@ public class SanPhamPU extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-    int id;
-    Double gia;
-        for (int i = 0;i < tblSPCT.getRowCount(); i++) {
-            id = (Integer)tblSPCT.getValueAt(i, 0);
-            gia = (Double)tblSPCT.getValueAt(i, 5);
+        try {
+            int id;
+            BigDecimal gia;
+            model = (DefaultTableModel) tblSPCT.getModel();
+            for (int i = 0;i < model.getRowCount(); i++) {
+            id = (Integer)model.getValueAt(i, 0);
+            gia = (BigDecimal)model.getValueAt(i, 5);
             SPCTViewModel spctv = new SPCTViewModel(id, gia);
             boolean check;
-            if ((Boolean)tblSPCT.getValueAt(i, 6) == true) {
+            if ((Boolean)model.getValueAt(i, 6) == true) {
                 check = true;
             } else {
                 check = false;
             }
             if(check) {
                 HDservice.buy(spctv, HoaDonId);
+                }
             }
-    }
-    dispose();
+            dispose();
+        } catch (NullPointerException ne) {
+            JOptionPane.showMessageDialog(this, "Chọn lại sản phẩm cần mua");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void tblSPCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPCTMouseClicked
-        if (tblSPCT.getValueAt(tblSPCT.getSelectedRow(), 6) == null && tblSPCT.getSelectedColumn() != 6) {
-            tblSPCT.setValueAt(true, tblSPCT.getSelectedRow(), 6);
-        } else if ((boolean)tblSPCT.getValueAt(tblSPCT.getSelectedRow(), 6) == true && tblSPCT.getSelectedColumn() != 6) {
-            tblSPCT.setValueAt(false, tblSPCT.getSelectedRow(), 6);
-        } else if ((boolean)tblSPCT.getValueAt(tblSPCT.getSelectedRow(), 6) == false && tblSPCT.getSelectedColumn() != 6) {
-            tblSPCT.setValueAt(true, tblSPCT.getSelectedRow(), 6);
-        }
-        for (int i=0;i<tblSPCT.getRowCount();i++) {
-            if((boolean)tblSPCT.getValueAt(i, 6) == true) {
-                btnThem.setEnabled(true);
-                break;
+        try {
+            model = (DefaultTableModel) tblSPCT.getModel();
+            int rowCount = model.getRowCount();
+            for (int i=0;i<rowCount;i++) {
+                if((boolean)tblSPCT.getValueAt(i, 6) == true) {
+                    btnThem.setEnabled(true);
+                    break;
+                }
+                if((boolean)tblSPCT.getValueAt(i, 6) == false) {
+                    btnThem.setEnabled(false);
+                }
             }
-            if((boolean)tblSPCT.getValueAt(i, 6) == false) {
-                btnThem.setEnabled(false);
-            }
+        } catch (NullPointerException ne) {
+            ne.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_tblSPCTMouseClicked
 

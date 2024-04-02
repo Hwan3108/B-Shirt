@@ -1,5 +1,8 @@
 package view.model;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 public class SPCTViewModel {
     private int id;
     private int idSP;
@@ -7,7 +10,7 @@ public class SPCTViewModel {
     private String kichThuoc;
     private String mauSac;
     private int soLuong;
-    private Double gia;
+    private BigDecimal gia;
     private int trangThai;
 
     public SPCTViewModel() {
@@ -17,12 +20,12 @@ public class SPCTViewModel {
         this.id = id;
     }
 
-    public SPCTViewModel(int id, Double gia) {
+    public SPCTViewModel(int id, BigDecimal gia) {
         this.id = id;
         this.gia = gia;
     }
 
-    public SPCTViewModel(int id, int idSP, String maSPCT, String kichThuoc, String mauSac, int soLuong, Double gia, int trangThai) {
+    public SPCTViewModel(int id, int idSP, String maSPCT, String kichThuoc, String mauSac, int soLuong, BigDecimal gia, int trangThai) {
         this.id = id;
         this.idSP = idSP;
         this.maSPCT = maSPCT;
@@ -81,11 +84,11 @@ public class SPCTViewModel {
         this.soLuong = soLuong;
     }
 
-    public Double getGia() {
+    public BigDecimal getGia() {
         return gia;
     }
 
-    public void setGia(Double gia) {
+    public void setGia(BigDecimal gia) {
         this.gia = gia;
     }
 
@@ -100,6 +103,7 @@ public class SPCTViewModel {
     
     
     public Object[] toDataRow() {
-        return new Object[] {this.id, this.maSPCT, this.kichThuoc, this.mauSac, this.soLuong, this.gia};
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        return new Object[] {this.id, this.maSPCT, this.kichThuoc, this.mauSac, this.soLuong, decimalFormat.format(this.gia)};
     }
 }

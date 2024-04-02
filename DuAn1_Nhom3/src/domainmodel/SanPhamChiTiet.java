@@ -1,5 +1,6 @@
 package domainmodel;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class SanPhamChiTiet {
@@ -14,7 +15,7 @@ public class SanPhamChiTiet {
     private int idThuongHieu;
     private String ma;
     private int soLuong;
-    private double gia;
+    private BigDecimal gia;
     private String moTa;
     private int trangThai;
     private Date ngayTao;
@@ -23,7 +24,7 @@ public class SanPhamChiTiet {
     public SanPhamChiTiet() {
     }
 
-    public SanPhamChiTiet(int id, int idChatLieu, int idHinhAnh, int idHoaTiet, int idKichThuoc, int idKieuDang, int idMauSac, int idSanPham, int idThuongHieu, String ma, int soLuong, double gia, String moTa, int trangThai, Date ngayTao, Date ngaySua) {
+    public SanPhamChiTiet(int id, int idChatLieu, int idHinhAnh, int idHoaTiet, int idKichThuoc, int idKieuDang, int idMauSac, int idSanPham, int idThuongHieu, String ma, int soLuong, BigDecimal gia, String moTa, int trangThai, Date ngayTao, Date ngaySua) {
         this.id = id;
         this.idChatLieu = idChatLieu;
         this.idHinhAnh = idHinhAnh;
@@ -130,11 +131,11 @@ public class SanPhamChiTiet {
         this.soLuong = soLuong;
     }
 
-    public double getGia() {
+    public BigDecimal getGia() {
         return gia;
     }
 
-    public void setGia(double gia) {
+    public void setGia(BigDecimal gia) {
         this.gia = gia;
     }
 

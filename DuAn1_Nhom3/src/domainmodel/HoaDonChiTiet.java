@@ -1,5 +1,7 @@
 package domainmodel;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class HoaDonChiTiet {
@@ -7,7 +9,7 @@ public class HoaDonChiTiet {
     private int idHoaDon;
     private int idSPCT;
     private int soLuong;
-    private Double donGia;
+    private BigDecimal donGia;
     private Date ngayTao;
     private Date ngaySua;
     private boolean trangThai;
@@ -15,7 +17,7 @@ public class HoaDonChiTiet {
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(int id, int idHoaDon, int idSPCT, int soLuong, Double donGia, Date ngayTao, Date ngaySua, boolean trangThai) {
+    public HoaDonChiTiet(int id, int idHoaDon, int idSPCT, int soLuong, BigDecimal donGia, Date ngayTao, Date ngaySua, boolean trangThai) {
         this.id = id;
         this.idHoaDon = idHoaDon;
         this.idSPCT = idSPCT;
@@ -58,11 +60,11 @@ public class HoaDonChiTiet {
         this.soLuong = soLuong;
     }
 
-    public Double getDonGia() {
+    public BigDecimal getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(Double donGia) {
+    public void setDonGia(BigDecimal donGia) {
         this.donGia = donGia;
     }
 
@@ -91,6 +93,7 @@ public class HoaDonChiTiet {
     }
     
     public Object[] toDataRow() {
-        return new Object[] {this.id, this.idHoaDon, this.idSPCT, this.soLuong, this.donGia, this.soLuong*this.donGia};
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        return new Object[] {this.id, this.idHoaDon, this.idSPCT, this.soLuong, decimalFormat.format(this.donGia), decimalFormat.format(this.donGia.multiply(BigDecimal.valueOf(this.soLuong)))};
     }
 }

@@ -1,17 +1,20 @@
 package view.model;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 public class GioHangViewModel {
     private int id;
     private String maSP;
     private String tenSP;
     private int soLuong;
-    private Double donGia;
+    private BigDecimal donGia;
     private boolean trangThai;
 
     public GioHangViewModel() {
     }
 
-    public GioHangViewModel(int id, String maSP, String tenSP, int soLuong, Double donGia, boolean trangThai) {
+    public GioHangViewModel(int id, String maSP, String tenSP, int soLuong, BigDecimal donGia, boolean trangThai) {
         this.id = id;
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -19,7 +22,7 @@ public class GioHangViewModel {
         this.donGia = donGia;
         this.trangThai = trangThai;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -52,11 +55,11 @@ public class GioHangViewModel {
         this.soLuong = soLuong;
     }
 
-    public Double getDonGia() {
+    public BigDecimal getDonGia() {
         return donGia;
     }
 
-    public void setDonGia(Double donGia) {
+    public void setDonGia(BigDecimal donGia) {
         this.donGia = donGia;
     }
 
@@ -69,6 +72,7 @@ public class GioHangViewModel {
     }
     
     public Object[] toDataRow() {
-        return new Object[] {this.id, this.maSP, this.tenSP, this.soLuong, this.donGia, this.soLuong*this.donGia};
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        return new Object[] {this.id, this.maSP, this.tenSP, this.soLuong, decimalFormat.format(this.donGia), decimalFormat.format(this.donGia.multiply(BigDecimal.valueOf(this.soLuong)))};
     }
 }

@@ -25,7 +25,7 @@ public class HoaDonChiTietRepository {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                HoaDonChiTiet hdct = new HoaDonChiTiet(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5), rs.getDate(6), rs.getDate(7), rs.getBoolean(8));
+                HoaDonChiTiet hdct = new HoaDonChiTiet(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getBigDecimal(5), rs.getDate(6), rs.getDate(7), rs.getBoolean(8));
                 list.add(hdct);
             }
             return list;
@@ -36,11 +36,11 @@ public class HoaDonChiTietRepository {
     }
     
     public List<GioHangViewModel> getGioHangView(int index) {
-        sql =   "SELECT hoa_don_chi_tiet.id_spct, san_pham.ma_san_pham, san_pham.ten_san_pham, SUM(hoa_don_chi_tiet.so_luong), spct.gia, hoa_don_chi_tiet.trang_thai FROM hoa_don_chi_tiet\n" +
+        sql =   "SELECT hoa_don_chi_tiet.id_spct, spct.ma_spct, san_pham.ten_san_pham, SUM(hoa_don_chi_tiet.so_luong), spct.gia, hoa_don_chi_tiet.trang_thai FROM hoa_don_chi_tiet\n" +
                 "INNER JOIN spct on spct.id = hoa_don_chi_tiet.id_spct \n" +
                 "INNER JOIN san_pham on san_pham.id = spct.id_san_pham\n" +
                 "WHERE hoa_don_chi_tiet.id_hoa_don = ?\n" +
-                "GROUP BY hoa_don_chi_tiet.id_spct, san_pham.ma_san_pham, san_pham.ten_san_pham, spct.gia, hoa_don_chi_tiet.trang_thai";
+                "GROUP BY hoa_don_chi_tiet.id_spct, spct.ma_spct, san_pham.ten_san_pham, spct.gia, hoa_don_chi_tiet.trang_thai";
         List<GioHangViewModel> listGioHang = new ArrayList<>();
         
         try {
@@ -49,7 +49,7 @@ public class HoaDonChiTietRepository {
             ps.setObject(1, index);
             rs = ps.executeQuery();
             while(rs.next()) {
-                GioHangViewModel gioHang = new GioHangViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5), rs.getBoolean(6));
+                GioHangViewModel gioHang = new GioHangViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getBigDecimal(5), rs.getBoolean(6));
                 listGioHang.add(gioHang);
             }
             return listGioHang;

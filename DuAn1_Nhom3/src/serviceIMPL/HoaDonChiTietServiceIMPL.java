@@ -63,21 +63,19 @@ public class HoaDonChiTietServiceIMPL implements HoaDonChiTietService{
 
     @Override
     public String addMore(List<SPCTViewModel> listSPCT, int idSPCT, int soLuong, int idHD) {
-        List<SPCTViewModel> list = new ArrayList<>();
-        for (SPCTViewModel x: list) {
+            for (SPCTViewModel x: listSPCT) {
             if (x.getId() == idSPCT) {
                 if(x.getSoLuong() < soLuong) {
                     return "Không đủ hàng để mua, vui lòng nhập số lượng nhỏ hơn " + x.getSoLuong();
+                    }
                 }
             }
-        }
-        if(soLuong <= 1) {
-            return "Số lượng không được nhỏ hơn 1";
-        } else if (repo.addMore(listSPCT, idSPCT, soLuong, idHD)) {
-            return "Cập nhật sản phẩm trong giỏ hàng thành công";
-        } else {
-            return "Không thể cho sản phẩm vào giỏ hàng";
-        }
+            if(soLuong <= 0) {
+                return "Số lượng không được nhỏ hơn 0";
+            } else if (repo.addMore(listSPCT, idSPCT, soLuong, idHD)) {
+                return "Cập nhật sản phẩm trong giỏ hàng thành công";
+            } else {
+                return "Không thể cho sản phẩm vào giỏ hàng";
+            }
     }
-
 }
