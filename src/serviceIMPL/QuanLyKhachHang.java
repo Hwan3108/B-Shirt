@@ -49,6 +49,11 @@ public class QuanLyKhachHang implements KhachHangService{
     public ArrayList<KhachHang> getGt(int Gt) {
           return hangRepository.searchGT(Gt);
     }
+
+    @Override
+    public ArrayList<KhachHang> getLayTT(int tt) {
+        return hangRepository.searchLayTT(tt);
+    }
     
     
 }

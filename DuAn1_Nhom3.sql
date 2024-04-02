@@ -363,6 +363,9 @@ VALUES
     (9, 9, 45, 900.00, 1, '2024-03-17', '2024-03-17'),
     (10, 10, 50, 1000.00, 1, '2024-03-16', '2024-03-16');
 
+	
+	select * from khach_hang where gioi_tinh = 0
+	select * from khach_hang where gioi_tinh = 1
 /* XOÁ DỮ LIỆU
 DELETE FROM chat_lieu
 DELETE FROM hinh_anh

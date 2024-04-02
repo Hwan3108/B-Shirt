@@ -9,4 +9,5 @@ public interface KhachHangService {
     String update(KhachHang kh);
     ArrayList<KhachHang> search(int id);
     ArrayList<KhachHang> getGt(int Gt);
+    ArrayList<KhachHang> getLayTT(int tt);
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 public class KhachHang {
-    private int id;
+    private Integer id;
     private String maKH;
     private String ten;
     private String SDT;
@@ -51,14 +51,15 @@ public class KhachHang {
         this.trangThai = trangThai;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+  
     public String getMaKH() {
         return maKH;
     }
@@ -149,9 +150,10 @@ public class KhachHang {
 
     @Override
     public String toString() {
-        return "KhachHang{" + "maKH=" + maKH + ", diaChi=" + diaChi + ", ten=" + ten + ", SDT=" + SDT + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+        return "KhachHang{" + "id=" + id + ", maKH=" + maKH + ", ten=" + ten + ", SDT=" + SDT + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi + ", email=" + email + ", cccd=" + cccd + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
     }
 
+    
     public String layGT(){
         if(gioiTinh == true){
             return "Nam";          

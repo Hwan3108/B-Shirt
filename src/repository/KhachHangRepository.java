@@ -91,7 +91,7 @@ public class KhachHangRepository {
 
     public ArrayList<KhachHang> search(int idKH) {
         ArrayList<KhachHang> list = new ArrayList<>();
-        String sql = "select * from KhachHang where id like '%" + idKH + "%'";
+        String sql = "select * from khach_hang where id like '%" + idKH + "%'";
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -118,6 +118,34 @@ public class KhachHangRepository {
 
     public ArrayList<KhachHang> searchGT(int gt) {
         String sql = "select * from khach_hang where gioi_tinh ="+gt+" ";
+        ArrayList<KhachHang> list = new ArrayList<>();
+
+        try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+         
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String maKH = rs.getString("ma_khach_hang");
+                String ten = rs.getString("ten_khach_hang");
+                String SDT = rs.getString("sdt");
+                String diaChi = rs.getString("dia_chi");
+                boolean gioiTinh = rs.getBoolean("gioi_tinh");
+                Date ngaySinh = (Date) Date.valueOf(rs.getString("ngay_sinh"));
+                String email = rs.getString("email");
+                String cccd = rs.getString("cccd");
+                Date ngayTao = (Date) Date.valueOf(rs.getString("ngay_tao"));
+                Date ngaySua = (Date) Date.valueOf(rs.getString("ngay_sua"));
+                boolean trangThai = rs.getBoolean("trang_thai");
+                KhachHang khachHang = new KhachHang(id, maKH, ten, SDT, ngaySinh, gioiTinh, diaChi, email, cccd, ngayTao, ngaySua, trangThai);
+                list.add(khachHang);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public ArrayList<KhachHang> searchLayTT(int tt) {
+        String sql = "select * from khach_hang where trang_thai ="+tt+" ";
         ArrayList<KhachHang> list = new ArrayList<>();
 
         try (Connection con = dBconnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
