@@ -1,6 +1,6 @@
 package view.panel;
 
-import view.panel.panel.KhachHangPanel;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -590,7 +590,7 @@ public class KhachHangView extends javax.swing.JPanel {
             try {
                 ngaySinh = format.parse(txtNgaySinh.getText());
             } catch (ParseException ex) {
-                Logger.getLogger(KhachHangPanel.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(KhachHangView.class.getName()).log(Level.SEVERE, null, ex);
             }
             boolean gioiTinh;
             if (rdoNam.isSelected()) {
