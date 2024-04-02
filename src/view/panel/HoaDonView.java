@@ -20,6 +20,7 @@ public class HoaDonView extends javax.swing.JPanel {
     void loadData(ArrayList<HoaDon> list){
         defaultTableModel = (DefaultTableModel) tblHoaDon.getModel();
         defaultTableModel.setRowCount(0);
+      
         for(HoaDon hd : list){
             defaultTableModel.addRow(new Object[]{
                 hd.getId(),
@@ -64,6 +65,11 @@ public class HoaDonView extends javax.swing.JPanel {
                 "ID", "ID Nhân viên", "ID Khách hàng", "ID Voucher", "Mã hoá đơn", "PTTT", "Ngày tạo", "Ngày sửa", "Trạng Thái"
             }
         ));
+        tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblHoaDon);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -147,6 +153,11 @@ public class HoaDonView extends javax.swing.JPanel {
         ArrayList<HoaDon> listKQ = qlhd.search(tim);
         loadData(listKQ);
     }//GEN-LAST:event_btnTimMouseClicked
+
+    private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+        // TODO add your handling code here:
+           tblHoaDon.setDefaultEditor(Object.class, null);
+    }//GEN-LAST:event_tblHoaDonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
