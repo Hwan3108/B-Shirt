@@ -7,6 +7,7 @@ package serviceIMPL;
 import domainmodel.KhachHang;
 import repository.KhachHangRepository;
 import java.util.ArrayList;
+import java.util.List;
 import service.KhachHangService;
 
 /**
@@ -54,5 +55,31 @@ public class QuanLyKhachHang implements KhachHangService{
             } 
         }
         return listNam ;
+    }
+
+    @Override
+    public int getKH(ArrayList<KhachHang> list, String sdt) {
+        if(list == null || sdt == null) {
+            throw new IllegalArgumentException("Dữ liệu đầu vào rỗng");
+        }
+        for (KhachHang kh: list) {
+            if (kh.getSDT().equals(sdt)) {
+                return kh.getId();
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public String getTenKH(ArrayList<KhachHang> list, String sdt) {
+        if(list == null || sdt == null) {
+            throw new IllegalArgumentException("Dữ liệu đầu vào rỗng");
+        }
+        for (KhachHang kh: list) {
+            if (kh.getSDT().equals(sdt)) {
+                return kh.getTen();
+            }
+        }
+        return null;
     }
 }

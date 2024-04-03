@@ -43,5 +43,31 @@ public class KhuyenMaiServiceIMPL implements KhuyenMaiService{
     public List<KhuyenMai> getByTrangThai(int choice) {
         return khuyenMaiRepository.getByTrangThai(choice);
     }
+
+    @Override
+    public int getKM(List<KhuyenMai> list, String ma) {
+        if (list == null || ma == null) {
+            throw new IllegalArgumentException("Dữ liệu đầu vào rỗng");
+        }
+        for (KhuyenMai km: list) {
+            if (km.getMaKhuyenMai().equals(ma) && km.getMaKhuyenMai() != null) {
+                return km.getId();
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public Double getDiscount(List<KhuyenMai> list, String ma) {
+        if (list == null || ma == null) {
+            throw new IllegalArgumentException("Dữ liệu đầu vào rỗng");
+        }
+        for (KhuyenMai km: list) {
+            if (km.getMaKhuyenMai().equals(ma) && km.getMaKhuyenMai() != null) {
+                return km.getPhanTram();
+            }
+        }
+        return 0.00;
+    }
     
 }

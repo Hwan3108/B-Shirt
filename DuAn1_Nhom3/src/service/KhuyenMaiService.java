@@ -11,4 +11,6 @@ public interface KhuyenMaiService {
     public void updateTrangThai();
     public List<KhuyenMai> getByMa(String ma);
     public List<KhuyenMai> getByTrangThai(int choice);
+    int getKM(List<KhuyenMai> list, String ma);
+    Double getDiscount(List<KhuyenMai> list, String ma);
 }

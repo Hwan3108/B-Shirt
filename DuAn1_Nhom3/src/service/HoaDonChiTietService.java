@@ -14,4 +14,5 @@ public interface HoaDonChiTietService {
     void delete(int idHD, int idSP);
     void buy(SPCTViewModel spctv, int idHD);
     String addMore(List<SPCTViewModel> listSPCT, int idSPCT, int soLuong, int idHD);
+    String returnItem(List<SPCTViewModel> listSPCT, int idSPCT, int soLuong, int idHD);
 }

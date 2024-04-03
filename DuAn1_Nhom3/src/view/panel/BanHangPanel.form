@@ -45,10 +45,7 @@
                   <Component id="panelSanPham" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="panelQR" max="32767" attributes="0"/>
-                  <Component id="panelThanhToan" pref="320" max="32767" attributes="0"/>
-              </Group>
+              <Component id="panelThanhToan" min="-2" pref="320" max="-2" attributes="0"/>
               <EmptySpace pref="2" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -59,9 +56,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="panelThanhToan" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="panelQR" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelThanhToan" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -108,6 +103,7 @@
                       <Component id="lblTienThua" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTenNhanVien" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPTTT" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTenKhachHang1" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -117,29 +113,16 @@
                           <Component id="rdoChuyenKhoan" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtTienThua" alignment="0" pref="206" max="32767" attributes="0"/>
-                                  <Component id="txtTienNhan" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtThanhToan" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="txtKhuyenMai" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtKhachHang" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtNhanVien" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="btnKhachHang" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <Component id="btnNhanVien" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <Component id="btnKhuyenMai" min="-2" pref="60" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="txtHoaDon" min="-2" pref="206" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtTienThua" alignment="0" pref="206" max="32767" attributes="0"/>
+                              <Component id="txtTienNhan" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtThanhToan" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtHoaDon" alignment="1" pref="206" max="32767" attributes="0"/>
+                              <Component id="txtKhachHang" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNhanVien" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtKhuyenMai" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnThanhToan" min="-2" pref="126" max="-2" attributes="0"/>
+                              <Component id="txtHoTen" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -151,35 +134,37 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMaHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtHoaDon" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTenKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnKhachHang" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblTenKhachHang1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtHoTen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTenNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMaKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtThanhToan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblTienNhan" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTienNhan" min="-2" max="-2" attributes="0"/>
@@ -189,15 +174,15 @@
                       <Component id="lblTienThua" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTienThua" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPTTT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rdoTienMat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rdoChuyenKhoan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Component id="btnThanhToan" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnThanhToan" min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -216,7 +201,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n kh&#xe1;ch h&#xe0;ng:"/>
+            <Property name="text" type="java.lang.String" value="S&#x110;T Kh&#xe1;ch h&#xe0;ng"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTenNhanVien">
@@ -224,7 +209,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xea;n nh&#xe2;n vi&#xea;n:"/>
+            <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMaKhuyenMai">
@@ -265,8 +250,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtKhachHang">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtKhachHangKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtKhuyenMai">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtKhuyenMaiKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNhanVien">
         </Component>
@@ -282,36 +273,12 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnNhanVien">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNhanVienActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnKhuyenMai">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhuyenMaiActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnThanhToan">
           <Properties>
             <Property name="text" type="java.lang.String" value="Thanh to&#xe1;n"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThanhToanActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnKhachHang">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhachHangActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPTTT">
@@ -336,6 +303,19 @@
               <ComponentRef name="btnPTTT"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Chuy&#x1ec3;n kho&#x1ea3;n"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTenKhachHang1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="T&#xea;n kh&#xe1;ch h&#xe0;ng"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtHoTen">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -690,7 +670,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtTimSP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" pref="183" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -772,38 +752,11 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="txtTimSP">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTimSPKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="panelQR">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-            <BevelBorder>
-              <Color PropertyName="highlightOuter" blue="66" green="66" red="66" type="rgb"/>
-              <Color PropertyName="highlightInner" blue="cc" green="cc" red="cc" type="rgb"/>
-              <Color PropertyName="shadowOuter" blue="66" green="66" red="66" type="rgb"/>
-              <Color PropertyName="shadowInner" blue="cc" green="cc" red="cc" type="rgb"/>
-            </BevelBorder>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="178" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
     </Container>
   </SubComponents>
 </Form>

@@ -15,4 +15,6 @@ public interface NhanVienService {
     List<NhanVien> searchChucVu(List<NhanVien> listNV, String chucVu);
     
     List<NhanVien> searchTrangThai(List<NhanVien> listNV, String trangThai);
+    
+    int getNV(List<NhanVien> list, String ma);
 }

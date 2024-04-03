@@ -72,7 +72,7 @@ public class GioHangViewModel {
     }
     
     public Object[] toDataRow() {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return new Object[] {this.id, this.maSP, this.tenSP, this.soLuong, decimalFormat.format(this.donGia), decimalFormat.format(this.donGia.multiply(BigDecimal.valueOf(this.soLuong)))};
     }
 }

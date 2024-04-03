@@ -2,6 +2,7 @@ package serviceIMPL;
 
 import java.util.List;
 import domainmodel.SanPhamChiTiet;
+import java.util.ArrayList;
 import repository.SanPhamChiTietRepository;
 import service.SanPhamChiTietService;
 import view.model.SPCTViewModel;
@@ -45,5 +46,19 @@ public class SanPhamChiTietServiceIMPL implements SanPhamChiTietService{
     public List<SPCTViewModel> getSPCTView() {
         return repo.getSPCTView();
     }
-    
+
+    @Override
+    public List<SPCTViewModel> search(List<SPCTViewModel> list, String ms, String kt) {
+        List<SPCTViewModel> listSearch = new ArrayList<>();
+        for (SPCTViewModel x: list) {
+            if (x.getMauSac().equals(ms) && x.getKichThuoc().equals(kt)) {
+                listSearch.add(x);
+            } else if (x.getMauSac().equals(ms) && kt.equals("Tất cả")) {
+                listSearch.add(x);
+            } else if (x.getKichThuoc().equals(kt) && ms.equals("Tất cả")) {
+                listSearch.add(x);
+            }
+        }
+        return listSearch;
+    }
 }

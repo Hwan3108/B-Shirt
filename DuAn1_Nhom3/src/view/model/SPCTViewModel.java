@@ -103,7 +103,7 @@ public class SPCTViewModel {
     
     
     public Object[] toDataRow() {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.00");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
         return new Object[] {this.id, this.maSPCT, this.kichThuoc, this.mauSac, this.soLuong, decimalFormat.format(this.gia)};
     }
 }

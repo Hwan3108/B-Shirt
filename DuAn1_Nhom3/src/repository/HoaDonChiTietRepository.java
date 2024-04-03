@@ -143,18 +143,39 @@ public class HoaDonChiTietRepository {
     }
     
     public boolean addMore(List<SPCTViewModel> list, int idSPCT, int soLuong, int idHD) {
-        sql =   "UPDATE hoa_don_chi_tiet SET so_luong += ? WHERE id_hoa_don = ? and id_spct = ?\n" +
-                "UPDATE spct SET so_luong -= ? WHERE id = ?";
+        sql =   "UPDATE spct SET so_luong -= ? WHERE id = ?\n" +
+                "UPDATE hoa_don_chi_tiet SET so_luong += ? WHERE id_spct = ? and id_hoa_don = ?";
         int check = 0;
         
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, soLuong);
-            ps.setObject(2, idHD);
-            ps.setObject(3, idSPCT);
-            ps.setObject(4, soLuong);
-            ps.setObject(5, idSPCT);
+            ps.setObject(2, idSPCT);
+            ps.setObject(3, soLuong);
+            ps.setObject(4, idSPCT);
+            ps.setObject(5, idHD);
+            
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+    
+    public boolean returnItem(List<SPCTViewModel> list, int idSPCT, int soLuong, int idHD) {
+        sql =   "UPDATE spct SET so_luong += ? WHERE id = ?\n" +
+                "UPDATE hoa_don_chi_tiet SET so_luong -= ? WHERE id_spct = ? and id_hoa_don = ?";
+        int check = 0;
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, soLuong);
+            ps.setObject(2, idSPCT);
+            ps.setObject(3, soLuong);
+            ps.setObject(4, idSPCT);
+            ps.setObject(5, idHD);
             
             check = ps.executeUpdate();
         } catch (Exception e) {

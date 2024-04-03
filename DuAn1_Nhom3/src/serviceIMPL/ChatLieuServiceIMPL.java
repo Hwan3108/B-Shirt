@@ -2,6 +2,7 @@ package serviceIMPL;
 
 import java.util.List;
 import domainmodel.ChatLieu;
+import java.util.ArrayList;
 import repository.ChatLieuRepository;
 import service.ChatLieuService;
 
@@ -22,5 +23,4 @@ public class ChatLieuServiceIMPL implements ChatLieuService{
     public void update(ChatLieu cl) {
        clRepo.update(cl);
     }
-
 }

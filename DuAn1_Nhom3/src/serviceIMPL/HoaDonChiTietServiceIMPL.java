@@ -78,4 +78,13 @@ public class HoaDonChiTietServiceIMPL implements HoaDonChiTietService{
                 return "Không thể cho sản phẩm vào giỏ hàng";
             }
     }
+
+    @Override
+    public String returnItem(List<SPCTViewModel> listSPCT, int idSPCT, int soLuong, int idHD) {
+            if (repo.returnItem(listSPCT, idSPCT, soLuong, idHD)) {
+                return "Cập nhật sản phẩm trong giỏ hàng thành công";
+            } else {
+                return "Không thể cho sản phẩm vào giỏ hàng";
+            }
+    }
 }

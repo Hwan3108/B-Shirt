@@ -126,5 +126,17 @@ public class NhanVienServiceIMPL implements NhanVienService{
         }
         return listSearch;
     }
-    
+
+    @Override
+    public int getNV(List<NhanVien> list, String ma) {
+        if (list == null || ma == null) {
+            throw new IllegalArgumentException("Dữ liệu đầu vào rỗng");
+        }
+        for (NhanVien nv: list) {
+            if(nv.getMa().equals(ma) && nv.getMa() != null) {
+                return nv.getId();
+            }
+        }
+        return 0;
+    }
 }

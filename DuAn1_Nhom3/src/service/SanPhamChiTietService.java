@@ -13,4 +13,5 @@ public interface SanPhamChiTietService {
     String update(SanPhamChiTiet spct, int id);
     List<SanPhamViewModel> getSPView();
     List<SPCTViewModel> getSPCTView();
+    List<SPCTViewModel> search(List<SPCTViewModel> list, String ms, String kt);
 }

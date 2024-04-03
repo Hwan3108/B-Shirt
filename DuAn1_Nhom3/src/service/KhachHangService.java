@@ -9,4 +9,6 @@ public interface KhachHangService {
     String update(KhachHang kh);
     ArrayList<KhachHang> search(int id);
     ArrayList<KhachHang> listNam(ArrayList<KhachHang> list);
+    int getKH(ArrayList<KhachHang> list, String sdt);
+    String getTenKH(ArrayList<KhachHang> list, String sdt);
 }
