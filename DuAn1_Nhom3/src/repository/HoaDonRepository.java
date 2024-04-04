@@ -85,12 +85,13 @@ public class HoaDonRepository {
         }
     }
         
-    public void create() {
+    public void create(String ma) {
         sql =   "INSERT INTO hoa_don (ma_hoa_don,trang_thai,ngay_tao,ngay_sua)\n" +
-                "VALUES (NEWID(),2,GETDATE(),GETDATE())";
+                "VALUES (?,2,GETDATE(),GETDATE())";
         try {
             con = dBconnection.getConnection();
             ps = con.prepareStatement(sql);
+            ps.setObject(1, ma);
             
             ps.executeUpdate();
         } catch (Exception e) {
@@ -151,6 +152,24 @@ public class HoaDonRepository {
             ps.setObject(2, hd.getIdPhieuGiamGia());
             ps.setObject(3, hd.isPTTT());
             ps.setObject(4, id);
+            
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check > 0;
+    }
+    
+    public boolean nullKM(HoaDon hd, int id) {
+        sql =   "UPDATE hoa_don SET id_nhan_vien = ?, pttt = ?, trang_thai = 1, ngay_sua = GETDATE() WHERE id = ?";
+        int check = 0;
+        
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, hd.getIdNhanVien());
+            ps.setObject(2, hd.isPTTT());
+            ps.setObject(3, id);
             
             check = ps.executeUpdate();
         } catch (Exception e) {

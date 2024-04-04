@@ -20,8 +20,8 @@ public class QuanLyHoaDon implements HoaDonService{
         return repository.search(id);    }
 
     @Override
-    public void create() {
-        repository.create();
+    public void create(String ma) {
+        repository.create(ma);
     }
 
     @Override
@@ -63,6 +63,18 @@ public class QuanLyHoaDon implements HoaDonService{
             return "Không được để trống id nhân viên";
         }
         else if(repository.khachLe(hd, id)) {
+            return "Thanh toán thành công";
+        } else {
+            return "Không thể thanh toán hoá đơn";
+        }
+    }
+
+    @Override
+    public String nullKM(HoaDon hd, int id) {
+        if (hd.getIdNhanVien() == 0) {
+            return "Không được để trống id nhân viên";
+        }
+        else if(repository.nullKM(hd, id)) {
             return "Thanh toán thành công";
         } else {
             return "Không thể thanh toán hoá đơn";

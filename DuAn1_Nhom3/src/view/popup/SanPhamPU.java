@@ -266,7 +266,7 @@ public class SanPhamPU extends javax.swing.JFrame {
             }
             dispose();
         } catch (NullPointerException ne) {
-            dispose();
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnThemActionPerformed

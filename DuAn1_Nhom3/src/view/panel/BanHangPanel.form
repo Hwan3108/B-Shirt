@@ -118,11 +118,11 @@
                               <Component id="txtTienNhan" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtThanhToan" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtHoaDon" alignment="1" pref="206" max="32767" attributes="0"/>
-                              <Component id="txtKhachHang" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtNhanVien" alignment="1" max="32767" attributes="0"/>
                               <Component id="txtKhuyenMai" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnThanhToan" min="-2" pref="126" max="-2" attributes="0"/>
                               <Component id="txtHoTen" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtKhachHang" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -180,7 +180,7 @@
                       <Component id="rdoTienMat" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rdoChuyenKhoan" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
                   <Component id="btnThanhToan" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>

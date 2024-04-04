@@ -18,7 +18,6 @@ import serviceIMPL.SanPhamChiTietServiceIMPL;
 import serviceIMPL.SanPhamServiceIMPL;
 import view.model.GioHangViewModel;
 import view.model.HoaDonViewModel;
-import view.model.SPCTViewModel;
 import view.model.SanPhamViewModel;
 import view.popup.*;
 
@@ -43,6 +42,8 @@ public class BanHangPanel extends javax.swing.JPanel {
     private Double discount = 0.00;
     private BigDecimal value = BigDecimal.ZERO;
     private BigDecimal discountValue = BigDecimal.ZERO;
+    private int count = HoaDonService.getBHView().get(0).getId();
+    private int counter = 0;
     
     public BanHangPanel() {
         initComponents();
@@ -59,6 +60,14 @@ public class BanHangPanel extends javax.swing.JPanel {
         txtNhanVien.setEditable(false);
         txtKhuyenMai.setEditable(false);
         txtThanhToan.setEditable(false);
+        for (int i=0; i<HoaDonService.getBHView().size();i++) {
+            if (HoaDonService.getBHView().get(i).getTrangThai() == 2) {
+                counter ++;
+            }
+        }
+        if (counter >= 10) {
+            btnTaoHD.setEnabled(false);
+        }
     }
     
     public void fillTableHD(List<HoaDonViewModel> list) {
@@ -90,6 +99,11 @@ public class BanHangPanel extends javax.swing.JPanel {
     void fillData(int index) {
         txtHoaDon.setText((String)tblHoaDon.getValueAt(index, 1));
         HoaDonID = (int)tblHoaDon.getValueAt(index, 0);
+    }
+    
+    String genMa() {
+        count++;
+        return "HD" + String.format("%05d", count);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -237,11 +251,11 @@ public class BanHangPanel extends javax.swing.JPanel {
                             .addComponent(txtTienNhan)
                             .addComponent(txtThanhToan)
                             .addComponent(txtHoaDon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(txtKhachHang)
                             .addComponent(txtNhanVien, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtKhuyenMai)
                             .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtHoTen))
+                            .addComponent(txtHoTen)
+                            .addComponent(txtKhachHang))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -285,7 +299,7 @@ public class BanHangPanel extends javax.swing.JPanel {
                     .addComponent(lblPTTT)
                     .addComponent(rdoTienMat)
                     .addComponent(rdoChuyenKhoan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -562,7 +576,13 @@ public class BanHangPanel extends javax.swing.JPanel {
             txtKhuyenMai.setEditable(true);
             btnHuyHD.setEnabled(true);
             txtTienNhan.setEditable(true);
-            HoaDonService.create();
+            HoaDonService.create(genMa());
+            counter++;
+            if (counter >= 10) {
+                btnTaoHD.setEnabled(false);
+            } else {
+                btnTaoHD.setEnabled(true);
+            }
             fillTableHD(HoaDonService.getBHView());
             rdoTatCa.setSelected(true);
             tblHoaDon.setRowSelectionInterval(0, 0);
@@ -571,16 +591,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             txtTienNhan.setText("");
             txtTienThua.setText("");
             BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
-            for (int i=0;i<tblGioHang.getRowCount();i++) {
-                String str = (String)tblGioHang.getValueAt(i, 5);
-                String clean = str.replaceAll("[,\\$\\€\\£]", "");
-                BigDecimal thanhTien = new BigDecimal(clean);
-                thanhToan = thanhToan.add(thanhTien);
-            }
-            discountValue = thanhToan.multiply(value).divide(new BigDecimal("100"));
-            thanhToan = thanhToan.subtract(discountValue);
             txtThanhToan.setText(decimalFormat.format(thanhToan));
-            System.out.print(thanhToan);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnTaoHDActionPerformed
@@ -595,6 +606,12 @@ public class BanHangPanel extends javax.swing.JPanel {
             fillData(index);
             if (tblHoaDon.getValueAt(index, 3).equals("Chờ thanh toán")) {
                 HoaDonService.cancel(HoaDonID);
+                counter--;
+            }
+            if (counter >= 10) {
+                btnTaoHD.setEnabled(false);
+            } else {
+                btnTaoHD.setEnabled(true);
             }
             listHD = HoaDonService.getBHView();
             List<HoaDonViewModel> listDaThanhToan = HoaDonService.locTrangThai(listHD, 1);
@@ -613,16 +630,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             fillTableSP(SPCTService.getSPView());
             fillTableGH(HDCTService.getGioHang(0));
             BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
-            for (int i=0;i<tblGioHang.getRowCount();i++) {
-                String str = (String)tblGioHang.getValueAt(i, 5);
-                String clean = str.replaceAll("[,\\$\\€\\£]", "");
-                BigDecimal thanhTien = new BigDecimal(clean);
-                thanhToan = thanhToan.add(thanhTien);
-            }
-            discountValue = thanhToan.multiply(value).divide(new BigDecimal("100"));
-            thanhToan = thanhToan.subtract(discountValue);
             txtThanhToan.setText(decimalFormat.format(thanhToan));
-            System.out.print(thanhToan);
         } catch (NullPointerException ne) {
             JOptionPane.showMessageDialog(this, "Chọn lại bảng hoá đơn");
         } catch (Exception e) {
@@ -644,8 +652,9 @@ public class BanHangPanel extends javax.swing.JPanel {
             fillTableSP(SPCTService.getSPView());
             trangThaiHD = (String)tblHoaDon.getValueAt(index, 3);
             BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
-            for (int i=0;i<tblGioHang.getRowCount();i++) {
-                String str = (String)tblGioHang.getValueAt(i, 5);
+            model = (DefaultTableModel) tblGioHang.getModel();
+            for (int i=0;i<model.getRowCount();i++) {
+                String str = (String)model.getValueAt(i, 5);
                 String clean = str.replaceAll("[,\\$\\€\\£]", "");
                 BigDecimal thanhTien = new BigDecimal(clean);
                 thanhToan = thanhToan.add(thanhTien);
@@ -766,8 +775,30 @@ public class BanHangPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Số lượng mới phải > 0");
                 } else if (soLuongNow > Integer.parseInt(soLuong)) {
                     JOptionPane.showMessageDialog(this, HDCTService.returnItem(SPCTService.getSPCTView(), idSPCT, soLuongNow - Integer.parseInt(soLuong), HoaDonID));
+                    BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
+                    model = (DefaultTableModel) tblGioHang.getModel();
+                    for (int i=0;i<model.getRowCount();i++) {
+                        String str = (String)model.getValueAt(i, 5);
+                        String clean = str.replaceAll("[,\\$\\€\\£]", "");
+                        BigDecimal thanhTien = new BigDecimal(clean);
+                        thanhToan = thanhToan.add(thanhTien);
+                    }
+                    discountValue = thanhToan.multiply(value).divide(new BigDecimal("100"));
+                    thanhToan = thanhToan.subtract(discountValue);
+                    txtThanhToan.setText(decimalFormat.format(thanhToan));
                 } else if (soLuongNow < Integer.parseInt(soLuong)) {
                     JOptionPane.showMessageDialog(this, HDCTService.addMore(SPCTService.getSPCTView(), idSPCT, Integer.parseInt(soLuong) - soLuongNow, HoaDonID));
+                    BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
+                    model = (DefaultTableModel) tblGioHang.getModel();
+                    for (int i=0;i<model.getRowCount();i++) {
+                        String str = (String)model.getValueAt(i, 5);
+                        String clean = str.replaceAll("[,\\$\\€\\£]", "");
+                        BigDecimal thanhTien = new BigDecimal(clean);
+                        thanhToan = thanhToan.add(thanhTien);
+                    }
+                    discountValue = thanhToan.multiply(value).divide(new BigDecimal("100"));
+                    thanhToan = thanhToan.subtract(discountValue);
+                    txtThanhToan.setText(decimalFormat.format(thanhToan));
                 } else if (soLuongNow == Integer.parseInt(soLuong)) {
                     JOptionPane.showMessageDialog(this, "Số lượng không thay đổi");
                 }    
@@ -781,16 +812,6 @@ public class BanHangPanel extends javax.swing.JPanel {
                 btnXoaSP.setEnabled(true);
             }
             fillTableSP(SPCTService.getSPView());
-            BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
-            for (int i=0;i<tblGioHang.getRowCount();i++) {
-                String str = (String)tblGioHang.getValueAt(i, 5);
-                String clean = str.replaceAll("[,\\$\\€\\£]", "");
-                BigDecimal thanhTien = new BigDecimal(clean);
-                thanhToan = thanhToan.add(thanhTien);
-            }
-            discountValue = thanhToan.multiply(value).divide(new BigDecimal("100"));
-            thanhToan = thanhToan.subtract(discountValue);
-            txtThanhToan.setText(decimalFormat.format(thanhToan));
         } catch (NullPointerException ne) {
             JOptionPane.showMessageDialog(this, "Chọn lại sản phẩm trong bảng giỏ hàng");
         } catch (HeadlessException e) {
@@ -813,18 +834,20 @@ public class BanHangPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Không thể thanh toán hoá đơn rỗng");
             } else if (txtHoTen.getText().isBlank() && khuyenMai.isBlank()) {
                 HoaDon hd = new HoaDon(HoaDonID, NVService.getNV(NVService.getAll(), nhanVien), ma, pttt);
-                JOptionPane.showMessageDialog(this, HoaDonService.khachLe(hd, HoaDonID));
+                JOptionPane.showMessageDialog(this, HoaDonService.nullKM(hd, HoaDonID));
+                counter--;
             } else if (txtHoTen.getText().isBlank()) {
                 HoaDon hd = new HoaDon(HoaDonID, NVService.getNV(NVService.getAll(), nhanVien), KMService.getKM(KMService.getAll(), khuyenMai), ma, pttt);
                 JOptionPane.showMessageDialog(this, HoaDonService.khachLe(hd, HoaDonID));
+                counter--;
             } else {
                 HoaDon hd = new HoaDon(HoaDonID, NVService.getNV(NVService.getAll(), nhanVien), KHService.getKH(KHService.getList(), khachHang), KMService.getKM(KMService.getAll(), khuyenMai), ma, pttt);
                 JOptionPane.showMessageDialog(this, HoaDonService.checkout(hd, HoaDonID));
+                counter--;
             }
             fillTableHD(HoaDonService.getBHView());
             BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
             txtThanhToan.setText(decimalFormat.format(thanhToan));
-            System.out.print(thanhToan);
             txtTienNhan.setText("");
             txtTienThua.setText("");
             txtKhachHang.setText("");
@@ -889,10 +912,10 @@ public class BanHangPanel extends javax.swing.JPanel {
         try {
             discount = KMService.getDiscount(KMService.getAll(), txtKhuyenMai.getText());
             value = new BigDecimal(discount);
-            System.out.println("Discount sau khi chuyển thành big decimal:" + value + "%");
             BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
-            for (int i=0;i<tblGioHang.getRowCount();i++) {
-                String str = (String)tblGioHang.getValueAt(i, 5);
+            model = (DefaultTableModel) tblGioHang.getModel();
+            for (int i=0;i<model.getRowCount();i++) {
+                String str = (String)model.getValueAt(i, 5);
                 String clean = str.replaceAll("[,\\$\\€\\£]", "");
                 BigDecimal thanhTien = new BigDecimal(clean);
                 thanhToan = thanhToan.add(thanhTien);
