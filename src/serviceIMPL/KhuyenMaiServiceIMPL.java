@@ -75,8 +75,8 @@ public class KhuyenMaiServiceIMPL implements KhuyenMaiService{
         return khuyenMaiRepository.maKhuyenMai();
     }
     
-    @Override
-    public List<KhuyenMai> layPhanTram(String ma){
-        return khuyenMaiRepository.getPhanTram(ma);
-    } 
+//    @Override
+//    public List<KhuyenMai> layPhanTram(String ma){
+//        return khuyenMaiRepository.getPhanTram(ma);
+//    } 
 }

@@ -611,7 +611,7 @@ public class MaKhuyenMaiPanel extends javax.swing.JPanel {
         List<KhuyenMai> listKM = khuyenMaiService.getByTrangThai(selected);
         model.setRowCount(0);
         for (KhuyenMai khuyenMai : listKM) {
-            model.addRow(new Object[]{khuyenMai.getId(), khuyenMai.getMaKhuyenMai(), khuyenMai.getPhanTram(), khuyenMai.getNgayBatDau(), khuyenMai.getNgayKetThuc(), khuyenMai.getMoTa(), khuyenMai.getTrangThai() == 1 ? "Đang áp dụng" : "Ngừng áp dụng"});
+            model.addRow(new Object[]{khuyenMai.getId(), khuyenMai.getMaKhuyenMai(),khuyenMai.getTenKhuyenMai(), khuyenMai.getPhanTram(), khuyenMai.getNgayBatDau(), khuyenMai.getNgayKetThuc(), khuyenMai.getMoTa(), khuyenMai.getTrangThai() == 1 ? "Đang áp dụng" : "Ngừng áp dụng"});
         }
     }//GEN-LAST:event_cbxTrangThaiActionPerformed
 

@@ -998,42 +998,24 @@ public class BanHangPanel extends javax.swing.JPanel {
         return true;
     }
     private void cboMaKhuyenMaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaKhuyenMaiMouseEntered
-        // TODO add your handling code here:
+
         try {
             String khuyenMai = (String) cboMaKhuyenMai.getSelectedItem();
-            String strTT = txtThanhToan.getText();
-            String cleanTT = strTT.replaceAll("[,\\$\\€\\£]", "");
-
-            // Kiểm tra xem cleanTT có phải là một số hợp lệ không
-            if (isNumeric(cleanTT)) {
-                BigDecimal thanhToan = new BigDecimal(cleanTT);
-
-                if (khuyenMai != null && !khuyenMai.isBlank()) {
-                    List<KhuyenMai> listPhanTram = KMService.layPhanTram(khuyenMai);
-                    double tongPhanTram = 0.0;
-                    for (KhuyenMai km : listPhanTram) {
-                        tongPhanTram = km.getPhanTram();
-                        break;
-                    }
-
-                    if (tongPhanTram != 0) {
-                        double giamGia = thanhToan.doubleValue() * (tongPhanTram / 100);
-                        double tongThanhToan = thanhToan.doubleValue() - giamGia;
-                        txtThanhToan.setText(decimalFormat.format(tongThanhToan));
-                        
-                    } else {
-                        txtThanhToan.setText(strTT); // Nếu không có khuyến mãi, giữ nguyên giá trị ban đầu.
-                    }
-                } else {
-                    txtThanhToan.setText(strTT); // Nếu không có khuyến mãi, giữ nguyên giá trị ban đầu.
-                }
-            } else {
-                // Xử lý trường hợp cleanTT không phải là một số hợp lệ (ví dụ: thông báo lỗi cho người dùng)
+            discount = KMService.getDiscount(KMService.getAll(), khuyenMai);
+            value = new BigDecimal(discount);
+            BigDecimal thanhToan = new BigDecimal(BigInteger.ZERO);
+            model = (DefaultTableModel) tblGioHang.getModel();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String str = (String) model.getValueAt(i, 5);
+                String clean = str.replaceAll("[,\\$\\€\\£]", "");
+                BigDecimal thanhTien = new BigDecimal(clean);
+                thanhToan = thanhToan.add(thanhTien);
             }
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
+            discountValue = thanhToan.multiply(value).divide(new BigDecimal("100"));
+            thanhToan = thanhToan.subtract(discountValue);
+            txtThanhToan.setText(decimalFormat.format(thanhToan));
+        } catch (Exception e) {
         }
-
     }//GEN-LAST:event_cboMaKhuyenMaiMouseEntered
 
     void loadCBBNhanVien() {

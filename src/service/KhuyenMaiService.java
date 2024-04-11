@@ -14,5 +14,5 @@ public interface KhuyenMaiService {
     int getKM(List<KhuyenMai> list, String ma);
     Double getDiscount(List<KhuyenMai> list, String ma);
     List<KhuyenMai> maKhuyenMais();
-    public List<KhuyenMai> layPhanTram(String ma);
+//    public List<KhuyenMai> layPhanTram(String ma);
 }

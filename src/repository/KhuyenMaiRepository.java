@@ -278,26 +278,26 @@ public class KhuyenMaiRepository {
 
     }
 
-      public List<KhuyenMai> getPhanTram(String ma) {
-        try {
-            listKM = new ArrayList<>();
-            sql = "select phan_tram_giam from phieu_giam_gia where ma_phieu like '%"+ma+"%'";
-            this.connectionAndPrepareStatement();
-            rs = ps.executeQuery();
-
-            while (rs.next()) {             
-                double phanTram = rs.getDouble("phan_tram_giam");            
-                KhuyenMai km = new KhuyenMai(null, phanTram);
-                listKM.add(km);
-            }
-
-          
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-           
-        } finally {
-            this.closeAll();
-        }
-          return listKM;
-    }
+//      public List<KhuyenMai> getPhanTram(String ma) {
+//        try {
+//            listKM = new ArrayList<>();
+//            sql = "select phan_tram_giam from phieu_giam_gia where ma_phieu = '"+ma+"'";
+//            this.connectionAndPrepareStatement();
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {             
+//                double phanTram = rs.getDouble("phan_tram_giam");            
+//                KhuyenMai km = new KhuyenMai(null, phanTram);
+//                listKM.add(km);
+//            }
+//
+//          
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//           
+//        } finally {
+//            this.closeAll();
+//        }
+//          return listKM;
+//    }
 }

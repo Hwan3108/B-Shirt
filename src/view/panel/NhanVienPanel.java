@@ -144,6 +144,8 @@ public class NhanVienPanel extends javax.swing.JPanel {
         btnChucVu.add(rdoQuanLy);
         rdoQuanLy.setText("Quản lý");
 
+        txtDiaChi.setMaximumSize(new java.awt.Dimension(64, 22));
+
         btnGioiTinh.add(rdoNam);
         rdoNam.setText("Nam");
 
@@ -226,7 +228,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
                                 .addComponent(rdoQuanLy))
                             .addComponent(txtHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                             .addComponent(txtNgaySinh)
-                            .addComponent(txtDiaChi)))
+                            .addComponent(txtDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblCCCD)
                         .addGap(18, 18, 18)
@@ -308,7 +310,7 @@ public class NhanVienPanel extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblDiaChi)
-                                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDiaChi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblEmail)
                                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(3, 3, 3)
@@ -615,7 +617,6 @@ public class NhanVienPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCCCD;
     private javax.swing.JLabel lblChucVu;
     private javax.swing.JLabel lblDiaChi;
