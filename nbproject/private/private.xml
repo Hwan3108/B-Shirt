@@ -4,12 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/repository/HoaDonRepository.java</file>
-            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/service/KhachHangService.java</file>
             <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/view/panel/MaKhuyenMaiPanel.java</file>
             <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/com/raven/main/Main.java</file>
-            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/repository/KhachHangRepository.java</file>
             <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/view/panel/BanHangPanel.java</file>
-            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/serviceIMPL/QuanLyHoaDon.java</file>
         </group>
     </open-files>
 </project-private>

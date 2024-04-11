@@ -233,6 +233,14 @@ public class BanHangPanel extends javax.swing.JPanel {
         cboNhanVien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
         cboMaKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cboMaKhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboMaKhuyenMaiMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cboMaKhuyenMaiMouseEntered(evt);
+            }
+        });
 
         cboTenKhachHang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         cboTenKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -893,62 +901,31 @@ public class BanHangPanel extends javax.swing.JPanel {
 
     private void txtTienNhanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienNhanKeyReleased
         try {
-            String khuyenMai = (String) cboMaKhuyenMai.getSelectedItem();
-            String inputText = txtTienNhan.getText(); // Lấy giá trị từ trường văn bản
-            inputText = inputText.replaceAll(",", ""); // Loại bỏ dấu phẩy
+            String formattedText = String.format("%,d", Long.valueOf(txtTienNhan.getText().replaceAll(",", "")));
+            txtTienNhan.setText(formattedText);
+            index = tblHoaDon.getSelectedRow();
+            String strTN = txtTienNhan.getText();
+            String cleanTN = strTN.replaceAll("[,\\$\\€\\£]", "");
+            BigDecimal tienNhan = new BigDecimal(cleanTN);
+            String strTT = txtThanhToan.getText();
+            String cleanTT = strTT.replaceAll("[,\\$\\€\\£]", "");
+            BigDecimal thanhToan = new BigDecimal(cleanTT);
+            if (txtTienNhan.getText().isBlank()) {
+                txtTienThua.setText("");
 
-            // Kiểm tra xem chuỗi không rỗng và có thể chuyển đổi thành số
-            if (!inputText.isEmpty()) {
-                BigDecimal inputValue = new BigDecimal(inputText); // Chuyển đổi chuỗi thành số BigDecimal
-
-                // Kiểm tra giá trị vượt quá giới hạn của kiểu long
-                if (inputValue.compareTo(new BigDecimal(Long.MAX_VALUE)) > 0) {
-                    JOptionPane.showMessageDialog(this, "Số tiền nhận quá lớn");
-                    return; // Trả về để không tiếp tục xử lý
+            } else if (tienNhan.subtract(thanhToan).compareTo(BigDecimal.ZERO) >= 0) {
+                if (tblHoaDon.getValueAt(index, 3).equals("Chờ thanh toán")) {
+                    btnThanhToan.setEnabled(true);
                 }
-
-                long number = inputValue.longValue(); // Chuyển đổi giá trị thành số long
-                String formattedText = String.format("%,d", number); // Định dạng số với dấu phẩy ngăn cách hàng nghìn
-                System.out.println("Formatted text: " + formattedText);
-
-                txtTienNhan.setText(formattedText); // Hiển thị số đã được định dạng lại vào trường văn bản
-
-                index = tblHoaDon.getSelectedRow();
-                String strTN = formattedText; // Sử dụng số đã được định dạng lại
-                String cleanTN = strTN.replaceAll("[,\\$\\€\\£]", "");
-                BigDecimal tienNhan = new BigDecimal(cleanTN);
-                String strTT = txtThanhToan.getText();
-                String cleanTT = strTT.replaceAll("[,\\$\\€\\£]", "");
-                BigDecimal thanhToan = new BigDecimal(cleanTT);
-
-                if (txtTienNhan.getText().isBlank()) {
-                    txtTienThua.setText("");
-                } else if (tienNhan.subtract(thanhToan).compareTo(BigDecimal.ZERO) >= 0) {
-                    if (tblHoaDon.getValueAt(index, 3).equals("Chờ thanh toán")) {
-                        btnThanhToan.setEnabled(true);
-                    }
-                    BigDecimal tienTT = new BigDecimal(strTT);
-                    txtTienThua.setText(decimalFormat.format(tienNhan.subtract(thanhToan)));
-//                    List<KhuyenMai> listPhanTram = KMService.layPhanTram(khuyenMai);
-//                    for (KhuyenMai km : listPhanTram) {
-//                        Double PT = km.getPhanTram();
-//                        // Xử lý các phần còn lại của mã của bạn
-//                    }
-                } else {
-                    btnThanhToan.setEnabled(false);
-                    txtTienThua.setText("");
-                }
+                txtTienThua.setText(decimalFormat.format(tienNhan.subtract(thanhToan)));
             } else {
-                // Xử lý trường hợp khi không có số nào được nhập vào
-                JOptionPane.showMessageDialog(this, "Không được để trống");
+                btnThanhToan.setEnabled(false);
+                txtTienThua.setText("");
             }
-
         } catch (NumberFormatException number) {
-            // Xử lý ngoại lệ khi không thể chuyển đổi chuỗi thành số
-            number.printStackTrace();
+
         } catch (Exception e) {
-            // Xử lý ngoại lệ chung
-            e.printStackTrace();
+
         }
     }//GEN-LAST:event_txtTienNhanKeyReleased
 
@@ -971,7 +948,9 @@ public class BanHangPanel extends javax.swing.JPanel {
                 fillTableSP(listSearch);
             }
         } catch (NullPointerException ne) {
+            ne.printStackTrace();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_txtTimSPKeyReleased
 
@@ -981,7 +960,6 @@ public class BanHangPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cboTenKhachHangMouseClicked
 
     private void cboTenKhachHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTenKhachHangMousePressed
-
 
     }//GEN-LAST:event_cboTenKhachHangMousePressed
 
@@ -1001,6 +979,62 @@ public class BanHangPanel extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_cboTenKhachHangMouseEntered
+
+    private void cboMaKhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaKhuyenMaiMouseClicked
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_cboMaKhuyenMaiMouseClicked
+
+    private boolean isNumeric(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c) && c != '.') {
+                return false;
+            }
+        }
+        return true;
+    }
+    private void cboMaKhuyenMaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaKhuyenMaiMouseEntered
+        // TODO add your handling code here:
+        try {
+            String khuyenMai = (String) cboMaKhuyenMai.getSelectedItem();
+            String strTT = txtThanhToan.getText();
+            String cleanTT = strTT.replaceAll("[,\\$\\€\\£]", "");
+
+            // Kiểm tra xem cleanTT có phải là một số hợp lệ không
+            if (isNumeric(cleanTT)) {
+                BigDecimal thanhToan = new BigDecimal(cleanTT);
+
+                if (khuyenMai != null && !khuyenMai.isBlank()) {
+                    List<KhuyenMai> listPhanTram = KMService.layPhanTram(khuyenMai);
+                    double tongPhanTram = 0.0;
+                    for (KhuyenMai km : listPhanTram) {
+                        tongPhanTram = km.getPhanTram();
+                        break;
+                    }
+
+                    if (tongPhanTram != 0) {
+                        double giamGia = thanhToan.doubleValue() * (tongPhanTram / 100);
+                        double tongThanhToan = thanhToan.doubleValue() - giamGia;
+                        txtThanhToan.setText(decimalFormat.format(tongThanhToan));
+                        
+                    } else {
+                        txtThanhToan.setText(strTT); // Nếu không có khuyến mãi, giữ nguyên giá trị ban đầu.
+                    }
+                } else {
+                    txtThanhToan.setText(strTT); // Nếu không có khuyến mãi, giữ nguyên giá trị ban đầu.
+                }
+            } else {
+                // Xử lý trường hợp cleanTT không phải là một số hợp lệ (ví dụ: thông báo lỗi cho người dùng)
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_cboMaKhuyenMaiMouseEntered
 
     void loadCBBNhanVien() {
         List<NhanVien> listNV = NVService.idNhanViens();
