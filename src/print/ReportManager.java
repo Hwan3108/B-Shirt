@@ -1,13 +1,6 @@
 package print;
 
 import domainmodel.HoaDon;
-import domainmodel.HoaDonChiTiet;
-import domainmodel.KhachHang;
-import domainmodel.KhuyenMai;
-import domainmodel.NhanVien;
-import domainmodel.SanPham;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +11,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.view.JasperViewer;
-import serviceIMPL.QuanLyHoaDon;
+
 
 public class ReportManager {
 
@@ -51,8 +44,7 @@ public class ReportManager {
             para.put("donGia", hd.getDonChiTiet().getDonGia());
             para.put("ngayMua", hd.getNgayTao());
             para.put("phuongTTT", hd.layPTTT());
-            para.put("tongTien", hd.getDonChiTiet().getTongTien());
-
+            para.put("tongTien", hd.getDonChiTiet().getTongTien());        
             if (reportPay == null) {
                 compileReport();
             }

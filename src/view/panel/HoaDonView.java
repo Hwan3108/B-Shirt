@@ -1,17 +1,29 @@
 package view.panel;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import domainmodel.HoaDon;
 import domainmodel.HoaDonChiTiet;
-import domainmodel.KhachHang;
-import domainmodel.KhuyenMai;
-import domainmodel.NhanVien;
-import domainmodel.SanPham;
-import java.math.BigDecimal;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import print.ReportManager;
 import serviceIMPL.HoaDonChiTietServiceIMPL;
 import serviceIMPL.NhanVienServiceIMPL;
@@ -83,23 +95,17 @@ public class HoaDonView extends javax.swing.JPanel {
             defaultTableModel = (DefaultTableModel) tblLichSu.getModel();
             defaultTableModel.setRowCount(0);
             for (HoaDon hd : list) {
-                SanPham sanPham = hd.getSanPham();
-                KhuyenMai khuyenMai = hd.getKhuyenMai();
-                NhanVien nhanVien = hd.getNhanVien();
-                KhachHang khachHang = hd.getKhachHang();
-                HoaDonChiTiet hdct = hd.getDonChiTiet();
-
                 defaultTableModel.addRow(new Object[]{
                     hd.getMaHoaDon(),
-                    nhanVien.getHoTen(),
-                    khachHang.getTen(),
-                    sanPham.getTen(),
-                    khuyenMai.getPhanTram(),
+                    hd.getNhanVien().getHoTen(),
+                    hd.getKhachHang().getTen(),
+                    hd.getSanPham().getTen(),
+                    hd.getKhuyenMai().getPhanTram(),
                     hd.layPTTT(),
-                    hdct.getSoLuong(),
-                    hdct.getDonGia(),
+                    hd.getDonChiTiet().getSoLuong(),
+                    hd.getDonChiTiet().getDonGia(),
                     hd.getNgayTao(),
-                    hdct.getTongTien(),
+                    hd.getDonChiTiet().getTongTien(),
                     hd.layTrangThaiHD()
 
                 });
@@ -328,9 +334,11 @@ public class HoaDonView extends javax.swing.JPanel {
 
     private void btnTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimMouseClicked
         // TODO add your handling code here:
+        if(validateForm()){
         int tim = Integer.parseInt(txtTim.getText());
         ArrayList<HoaDon> listKQ = qlhd.search(tim);
         loadData(listKQ);
+        }
     }//GEN-LAST:event_btnTimMouseClicked
 
     private void btnLamMoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLamMoiMouseClicked
@@ -344,13 +352,21 @@ public class HoaDonView extends javax.swing.JPanel {
         try {
             int row = tblLichSu.getSelectedRow();
             ReportManager.getInstance().printReportPayment(qlhd.getLichSu().get(row));
-                
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }//GEN-LAST:event_btnPrintMouseClicked
-
+    boolean validateForm(){
+        if(txtTim.getText().equals("") && txtTim.getText().isEmpty()){
+            
+            JOptionPane.showMessageDialog(this, "Không được để trống");
+            return false;
+                    
+        }
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLamMoi;

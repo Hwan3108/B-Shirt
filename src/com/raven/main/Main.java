@@ -9,6 +9,7 @@ import view.panel.KhachHangView;
 import view.panel.MaKhuyenMaiPanel;
 
 import view.panel.NhanVienPanel;
+import view.panel.ThongKePanel;
 
 public class Main extends javax.swing.JFrame {
     
@@ -17,6 +18,7 @@ public class Main extends javax.swing.JFrame {
     private KhachHangView khachHang;
     private NhanVienPanel nhanVien;
     private MaKhuyenMaiPanel khuyenMai;
+    private ThongKePanel thongke;
 
     public Main() {
         initComponents();
@@ -26,6 +28,7 @@ public class Main extends javax.swing.JFrame {
         khachHang = new KhachHangView();
         nhanVien = new NhanVienPanel();
         khuyenMai = new MaKhuyenMaiPanel();
+        thongke = new ThongKePanel();
 
         menu.initMoving(Main.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
@@ -42,7 +45,7 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 4) {
                     setForm(nhanVien);
                 } else if (index == 5) {
-                    
+                      setForm(thongke);
                 } else if (index == 6) {
                     setForm(khuyenMai);
                 } else if (index == 7) {

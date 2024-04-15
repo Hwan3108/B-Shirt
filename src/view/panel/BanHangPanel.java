@@ -235,7 +235,7 @@ public class BanHangPanel extends javax.swing.JPanel {
             }
         });
 
-        cboTenKhachHang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
+        cboTenKhachHang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Khách bán lẻ" }));
         cboTenKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cboTenKhachHangMouseClicked(evt);
