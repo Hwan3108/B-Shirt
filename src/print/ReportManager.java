@@ -8,6 +8,7 @@ import domainmodel.NhanVien;
 import domainmodel.SanPham;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRException;
@@ -39,31 +40,32 @@ public class ReportManager {
     }
 
     public void printReportPayment(HoaDon hd) throws JRException {
-       
-        QuanLyHoaDon qlhd = new QuanLyHoaDon();
-        ArrayList<HoaDon> hoaDons = qlhd.getLichSu();
-        Map para = new HashMap();
-        SanPham sanPham = hd.getSanPham();
-        KhuyenMai khuyenMai = hd.getKhuyenMai();
-        NhanVien nhanVien = hd.getNhanVien();
-        KhachHang khachHang = hd.getKhachHang();
-        HoaDonChiTiet hdct = hd.getDonChiTiet();
-        para.put("Mã Hóa Đơn", hd.getMaHoaDon());
-        para.put("Tên Nhân Viên", nhanVien.getHoTen());
-        para.put("Tên Khách Hàng", khachHang.getTen());
-        para.put("Tên Sản Phẩm", sanPham.getTen());
-        para.put("Giảm Giá", khuyenMai.getPhanTram());
-        para.put("Số Lương", hdct.getSoLuong());
-        para.put("Đơn Giá", hdct.getDonGia());
-        para.put("Ngày Tạo", hd.getNgayTao());
-        para.put("Phương Thức Thanh Toán", hd.layPTTT());
-        para.put("Tổng Tiền", hdct.getTongTien());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(hoaDons);
-        JasperPrint print = JasperFillManager.fillReport(reportPay, para, dataSource);
-        view(print);
+        try {
+            Map para = new HashMap();
+            para.put("mahoadon", hd.getMaHoaDon());
+            para.put("tenNhanVien", hd.getNhanVien().getHoTen());
+            para.put("tenKhachHang", hd.getKhachHang().getTen());
+            para.put("tenSanPham", hd.getSanPham().getTen());
+            para.put("giamGia", hd.getKhuyenMai().getPhanTram());
+            para.put("soLuong", hd.getDonChiTiet().getSoLuong());
+            para.put("donGia", hd.getDonChiTiet().getDonGia());
+            para.put("ngayMua", hd.getNgayTao());
+            para.put("phuongTTT", hd.layPTTT());
+            para.put("tongTien", hd.getDonChiTiet().getTongTien());
 
+            if (reportPay == null) {
+                compileReport();
+            }
+
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singletonList(hd.getListLS()));
+            JasperPrint print = JasperFillManager.fillReport(reportPay, para, dataSource);
+            view(print);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    private void view(JasperPrint print) throws JRException{
+
+    private void view(JasperPrint print) throws JRException {
         JasperViewer.viewReport(print, false);
     }
 

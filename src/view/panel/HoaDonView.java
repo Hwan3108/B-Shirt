@@ -37,6 +37,11 @@ public class HoaDonView extends javax.swing.JPanel {
         tblHoaDon.setDefaultEditor(Object.class, null);
         tblHoaDonChiTiet.setDefaultEditor(Object.class, null);
         tblLichSu.setDefaultEditor(Object.class, null);
+        try {
+            ReportManager.getInstance().compileReport();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     void loadData(ArrayList<HoaDon> list) {
@@ -337,8 +342,9 @@ public class HoaDonView extends javax.swing.JPanel {
 
     private void btnPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseClicked
         try {
-            ReportManager.getInstance().printReportPayment(qlhd.getLichSu().get(1));
-                  
+            int row = tblLichSu.getSelectedRow();
+            ReportManager.getInstance().printReportPayment(qlhd.getLichSu().get(row));
+                
         } catch (Exception e) {
             e.printStackTrace();
         }

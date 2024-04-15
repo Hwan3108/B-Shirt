@@ -28,6 +28,19 @@ public class HoaDon {
     public void setListLS(List<HoaDon> listLS) {
         this.listLS = listLS;
     }
+
+    public HoaDon(String maHoaDon, boolean PTTT, Date ngayTao, int trangThai, SanPham sanPham, NhanVien nhanVien, HoaDonChiTiet donChiTiet, KhachHang khachHang, KhuyenMai khuyenMai, List<HoaDon> listLS) {
+        this.maHoaDon = maHoaDon;
+        this.PTTT = PTTT;
+        this.ngayTao = ngayTao;
+        this.trangThai = trangThai;
+        this.sanPham = sanPham;
+        this.nhanVien = nhanVien;
+        this.donChiTiet = donChiTiet;
+        this.khachHang = khachHang;
+        this.khuyenMai = khuyenMai;
+        this.listLS = listLS;
+    }
     
 
     public HoaDon() {
