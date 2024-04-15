@@ -16,4 +16,5 @@ public interface KhachHangService {
     int getKH(ArrayList<KhachHang> list, String sdt);
     String getTenKH(ArrayList<KhachHang> list, String sdt);
     public ArrayList<KhachHang> searchKH(ArrayList<KhachHang> list, String maKH, String tenKH, String SDT, String email, String cccd);
+ 
 }

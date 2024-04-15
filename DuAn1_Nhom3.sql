@@ -30,6 +30,16 @@ SELECT * FROM san_pham
 SELECT * FROM spct
 SELECT * FROM thuong_hieu
 */
+SELECT * FROM hoa_don where trang_thai = 2
+select DISTINCT ma_hoa_don, ten_nhan_vien, ten_khach_hang, phan_tram_giam, pttt, hoa_don.trang_thai, san_pham.ten_san_pham ,hoa_don.ngay_tao, hoa_don_chi_tiet.so_luong, don_gia from hoa_don inner join nhan_vien on hoa_don.id_nhan_vien = nhan_vien.id 
+inner join khach_hang on hoa_don.id_khach_hang = khach_hang.id
+inner join phieu_giam_gia on hoa_don.id_phieu_giam_gia = phieu_giam_gia.id
+inner join hoa_don_chi_tiet on hoa_don.id = hoa_don_chi_tiet.id_hoa_don
+inner join spct on spct.id = hoa_don_chi_tiet.id_spct
+inner join san_pham on san_pham.id = spct.id_san_pham
+where hoa_don.trang_thai = 1
+
+
 
 select duong_dan from hinh_anh where ma_hinh_anh = ''
 select ma_phieu from phieu_giam_gia where trang_thai = 1

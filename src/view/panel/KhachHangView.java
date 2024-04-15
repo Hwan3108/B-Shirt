@@ -658,6 +658,7 @@ public class KhachHangView extends javax.swing.JPanel {
         rdoNu.setSelected(false);
         rdoConHD.setSelected(false);
         rdoNgungHD.setSelected(false);
+        loadData(list);
 
 
     }//GEN-LAST:event_btnLamMoiMouseClicked

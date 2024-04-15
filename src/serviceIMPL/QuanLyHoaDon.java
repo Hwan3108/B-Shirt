@@ -85,4 +85,9 @@ public class QuanLyHoaDon implements HoaDonService{
             return "Không thể thanh toán hoá đơn";
         }
     }
+
+    @Override
+    public ArrayList<HoaDon> getLichSu() {
+        return repository.getLichSu();
+    }
 }

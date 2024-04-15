@@ -1,11 +1,14 @@
 package repository;
 
+import domainmodel.HoaDon;
+import domainmodel.NhanVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import domainmodel.SanPhamChiTiet;
+import java.util.Date;
 import ultilities.DBConnect;
 import view.model.SPCTViewModel;
 import view.model.SanPhamViewModel;
@@ -157,4 +160,5 @@ public class SanPhamChiTietRepository {
         }
         return check > 0;
     }
+
 }

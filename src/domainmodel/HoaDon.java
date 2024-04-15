@@ -1,8 +1,10 @@
 package domainmodel;
 
 import java.util.Date;
+import java.util.List;
 
 public class HoaDon {
+
     private int id;
     private int idNhanVien;
     private int idKhachHang;
@@ -12,6 +14,21 @@ public class HoaDon {
     private Date ngayTao;
     private Date ngaySua;
     private int trangThai;
+    private SanPham sanPham;
+    private NhanVien nhanVien;
+    private HoaDonChiTiet donChiTiet;
+    private KhachHang khachHang;
+    private KhuyenMai khuyenMai;
+    List<HoaDon> listLS;
+
+    public List<HoaDon> getListLS() {
+        return listLS;
+    }
+
+    public void setListLS(List<HoaDon> listLS) {
+        this.listLS = listLS;
+    }
+    
 
     public HoaDon() {
     }
@@ -39,7 +56,7 @@ public class HoaDon {
         this.maHoaDon = maHoaDon;
         this.PTTT = PTTT;
     }
-    
+
     public HoaDon(int id, int idNhanVien, int idKhachHang, int idPhieuGiamGia, String maHoaDon, boolean PTTT, Date ngayTao, Date ngaySua, int trangThai) {
         this.id = id;
         this.idNhanVien = idNhanVien;
@@ -123,23 +140,66 @@ public class HoaDon {
     public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
+
+    public SanPham getSanPham() {
+        return sanPham;
+    }
+
+    public void setSanPham(SanPham sanPham) {
+        this.sanPham = sanPham;
+    }
+
+    public NhanVien getNhanVien() {
+        return nhanVien;
+    }
+
+    public void setNhanVien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
+    }
+
+    public HoaDonChiTiet getDonChiTiet() {
+        return donChiTiet;
+    }
+
+    public void setDonChiTiet(HoaDonChiTiet donChiTiet) {
+        this.donChiTiet = donChiTiet;
+    }
+
+    public KhachHang getKhachHang() {
+        return khachHang;
+    }
+
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
+    }
+
+    public KhuyenMai getKhuyenMai() {
+        return khuyenMai;
+    }
+
+    public void setKhuyenMai(KhuyenMai khuyenMai) {
+        this.khuyenMai = khuyenMai;
+    }
+
     
-    public String layTrangThaiHD(){
-        if(trangThai == 1){
+    
+    public String layTrangThaiHD() {
+        if (trangThai == 1) {
             return "Đã thanh toán";
-        } else if (trangThai == 2){
+        } else if (trangThai == 2) {
             return "Chờ thanh toán";
         } else {
             return "Huỷ";
         }
     }
-    
-    public String layPTTT(){
-        if(PTTT == true){
+
+    public String layPTTT() {
+        if (PTTT == true) {
             return "Tiền mặt";
         } else {
             return "Chuyển khoản";
         }
     }
-    
+
+ 
 }

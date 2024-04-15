@@ -2,9 +2,12 @@ package domainmodel;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class HoaDonChiTiet {
+
+    SimpleDateFormat format = new SimpleDateFormat("MM-dd-YYYY");
     private int id;
     private int idHoaDon;
     private int idSPCT;
@@ -13,6 +16,7 @@ public class HoaDonChiTiet {
     private Date ngayTao;
     private Date ngaySua;
     private boolean trangThai;
+    private BigDecimal tongTien;
 
     public HoaDonChiTiet() {
     }
@@ -91,9 +95,30 @@ public class HoaDonChiTiet {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
+
     public Object[] toDataRow() {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
-        return new Object[] {this.id, this.idHoaDon, this.idSPCT, this.soLuong, decimalFormat.format(this.donGia), decimalFormat.format(this.donGia.multiply(BigDecimal.valueOf(this.soLuong)))};
+        return new Object[]{this.id, this.idHoaDon, this.idSPCT, this.soLuong, decimalFormat.format(this.donGia), decimalFormat.format(this.donGia.multiply(BigDecimal.valueOf(this.soLuong)))};
+    }
+
+    public void setTongTien(BigDecimal tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public BigDecimal getTongTien() {
+        return tongTien;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDonChiTiet{" + "format=" + format + ", id=" + id + ", idHoaDon=" + idHoaDon + ", idSPCT=" + idSPCT + ", soLuong=" + soLuong + ", donGia=" + donGia + ", ngayTao=" + ngayTao + ", ngaySua=" + ngaySua + ", trangThai=" + trangThai + '}';
+    }
+
+    public String layTT() {
+        if (trangThai == true) {
+            return "Chờ thanh toán";
+        } else {
+            return "Đã thanh toán";
+        }
     }
 }

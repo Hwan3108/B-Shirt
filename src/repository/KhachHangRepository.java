@@ -5,7 +5,12 @@
 package repository;
 
 
+import domainmodel.HoaDon;
+import domainmodel.HoaDonChiTiet;
 import domainmodel.KhachHang;
+import domainmodel.KhuyenMai;
+import domainmodel.NhanVien;
+import domainmodel.SanPham;
 import java.util.ArrayList;
 import java.sql.*;
 import java.text.DateFormat;
@@ -176,5 +181,6 @@ public class KhachHangRepository {
         }
         return list;
     }
+
 
 }

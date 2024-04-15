@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/repository/HoaDonRepository.java</file>
-            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/view/panel/MaKhuyenMaiPanel.java</file>
+            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/print/ReportManager.java</file>
             <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/com/raven/main/Main.java</file>
+            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/domainmodel/HoaDon.java</file>
+            <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/view/panel/HoaDonView.java</file>
             <file>file:/F:/Du_An_1/DuAn1_Nhom3/src/view/panel/BanHangPanel.java</file>
         </group>
     </open-files>

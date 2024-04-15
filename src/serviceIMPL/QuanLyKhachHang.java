@@ -101,4 +101,6 @@ public class QuanLyKhachHang implements KhachHangService {
         return hangRepository.layTen();
     }
 
+
+
 }

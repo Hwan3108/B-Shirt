@@ -1,5 +1,10 @@
 package repository;
 
+import domainmodel.HoaDon;
+import domainmodel.HoaDonChiTiet;
+import domainmodel.KhachHang;
+import domainmodel.KhuyenMai;
+import domainmodel.NhanVien;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 import ultilities.DBConnect;
 import domainmodel.SanPham;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.sql.*;
+import java.text.DateFormat;
 
 public class SanPhamRepository {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     String sql = null;
+      SimpleDateFormat format = new SimpleDateFormat("MM-dd-YYYY");
 
     public List<SanPham> getAll() {
         sql = "SELECT * FROM san_pham";

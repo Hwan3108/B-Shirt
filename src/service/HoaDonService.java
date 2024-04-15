@@ -15,4 +15,5 @@ public interface HoaDonService {
     String nullKM(HoaDon hd, int id);
     List<HoaDonViewModel> getBHView();
     List<HoaDonViewModel> locTrangThai(List<HoaDonViewModel> list, int index);
+    ArrayList<HoaDon> getLichSu();
 }
